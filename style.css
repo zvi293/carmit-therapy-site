@@ -449,13 +449,13 @@ body {
 .about-img-card {
     position: relative;
     width: 100%;
-    max-width: 460px;
+    max-width: 360px;
     border-radius: 20px;
     background: linear-gradient(145deg, #f0f4ff 0%, #faf5ff 55%, #fff8f3 100%);
     box-shadow:
         0 4px 16px rgba(94, 123, 255, 0.10),
         0 20px 50px rgba(15, 23, 42, 0.09);
-    padding: 16px 16px 0;
+    padding: 12px 12px 0;
     border: 1px solid rgba(226, 232, 240, 0.9);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1059,9 +1059,24 @@ body {
 /* EXTRA RESPONSIVE TWEAKS (בלי לשנות מבנה/תוכן) */
 
 @media (max-width: 900px) {
-    /* About section image card stacked layout */
+    /* About section – image first, text second on mobile */
+    .section.about .two-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .section.about .image-block {
+        order: -1;
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    .section.about .text-block {
+        order: 1;
+    }
+
     .about-img-card {
-        max-width: 400px;
+        max-width: 320px;
     }
 
     .about-badge {
@@ -1072,9 +1087,9 @@ body {
 
 @media (max-width: 520px) {
     .about-img-card {
-        max-width: min(300px, 88vw);
+        max-width: min(260px, 82vw);
         border-radius: 16px;
-        padding: 12px 12px 0;
+        padding: 10px 10px 0;
     }
 
     .about-img {

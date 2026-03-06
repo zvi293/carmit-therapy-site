@@ -426,7 +426,7 @@ body {
     align-items: center;
 }
 
-/* ABOUT – תמונת רקע חדשה בכרטיס */
+/* ABOUT – image card redesign */
 
 .text-block p {
     margin-bottom: 14px;
@@ -440,56 +440,57 @@ body {
 
 .image-block {
     position: relative;
-    min-height: 460px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
-.about-photo {
-    border-radius: var(--border-radius-lg);
-}
-.main-photo{
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 400px;
-  border-radius: 100px;
-  box-shadow: var(--shadow-soft);
-
-  /* הגרדיאנט הוא הרקע, ואז מעליו התמונה */
-  background:
-    url("./image/עיצוב.png") center top / contain no-repeat,
-    linear-gradient(135deg, #ffffff 0%, #f3e8ff 100%);
-}
-
-.main-photo {
-    background-color: #ffffff;
-    box-shadow: 
-        0 4px 20px rgba(192, 38, 211, 0.25),
-        0 20px 60px rgba(0, 0, 0, 0.08);
+/* Card surface that frames the therapist portrait */
+.about-img-card {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #f0f4ff 0%, #faf5ff 55%, #fff8f3 100%);
+    box-shadow:
+        0 4px 16px rgba(94, 123, 255, 0.10),
+        0 20px 50px rgba(15, 23, 42, 0.09);
+    padding: 16px 16px 0;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-
-
-
-
-.about-stripe {
-    position: absolute;
-    height: 4px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #5e7bff, #ffe1cd);
+.about-img-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 8px 24px rgba(94, 123, 255, 0.14),
+        0 28px 60px rgba(15, 23, 42, 0.12);
 }
 
+/* The portrait image itself */
+.about-img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 12px 12px 0 0;
+}
 
 .about-badge {
     position: absolute;
-    inset-inline-end: -6px;
-    bottom: 18px;
+    inset-inline-end: 12px;
+    bottom: -12px;
     background: var(--accent-dark);
     color: var(--white);
     font-size: 13px;
     padding: 10px 12px;
     border-radius: 20px;
     box-shadow: 0 14px 30px rgba(15, 23, 42, 0.4);
+    text-align: center;
+    line-height: 1.4;
 }
 
 
@@ -988,8 +989,12 @@ body {
     }
 
     .image-block {
-        margin-top: 20px;
-        min-height: 240px;
+        margin-top: 28px;
+        justify-content: center;
+    }
+
+    .about-img-card {
+        max-width: 420px;
     }
 
     .clinic-grid {
@@ -1054,21 +1059,26 @@ body {
 /* EXTRA RESPONSIVE TWEAKS (בלי לשנות מבנה/תוכן) */
 
 @media (max-width: 900px) {
-    /* כרטיס האודות: למנוע גלישה של אלמנטים שמבוססים על absolute+גובה קבוע */
-    .image-block {
-        min-height: auto;
-    }
-
-    .main-photo {
-        position: relative;
-        top: auto;
-        height: min(320px, 70vw);
-        border-radius: var(--border-radius-lg);
+    /* About section image card stacked layout */
+    .about-img-card {
+        max-width: 400px;
     }
 
     .about-badge {
-        inset-inline-end: 0;
-        max-width: 70%;
+        inset-inline-end: 8px;
+        bottom: -14px;
+    }
+}
+
+@media (max-width: 520px) {
+    .about-img-card {
+        max-width: min(300px, 88vw);
+        border-radius: 16px;
+        padding: 12px 12px 0;
+    }
+
+    .about-img {
+        border-radius: 8px 8px 0 0;
     }
 }
 

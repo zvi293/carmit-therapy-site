@@ -12,25 +12,25 @@
     <meta name="theme-color" content="#5e7bff">
 
     <!-- חשוב: עדכן את ה-URL לאחר שיש לך דומיין/כתובת סופית -->
-    <link rel="canonical" href="https://carmit-therapy.netlify.app">
+    <link rel="canonical" href="https://carmit-therapy.netlify.app/">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Open Graph (שיתוף בוואטסאפ/פייסבוק) -->
     <meta property="og:locale" content="he_IL">
     <meta property="og:type" content="website">
     <meta property="og:title" content="טיפול רגשי לילדים ונוער | כרמית משה">
     <meta property="og:description" content="מרחב רגשי בטוח לילדים ונוער – פסיכודרמה, CBT ומיינדפולנס.">
-    <meta property="og:url" content="https://carmit-therapy.netlify.app">
+    <meta property="og:url" content="https://carmit-therapy.netlify.app/">
     <meta property="og:site_name" content="כרמית משה – טיפול רגשי לילדים ונוער">
-    <!-- מומלץ: לשים תמונת שיתוף ייעודית בגודל 1200x630 -->
-    <meta property="og:image" content="https://carmit-therapy.netlify.app/image/og-cover.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://carmit-therapy.netlify.app/image/%D7%A2%D7%99%D7%A6%D7%95%D7%91.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="טיפול רגשי לילדים ונוער | כרמית משה">
     <meta name="twitter:description" content="מרחב רגשי בטוח לילדים ונוער – פסיכודרמה, CBT ומיינדפולנס.">
-    <meta name="twitter:image" content="https://carmit-therapy.netlify.app/image/og-cover.jpg">
+    <meta name="twitter:image" content="https://carmit-therapy.netlify.app/image/%D7%A2%D7%99%D7%A6%D7%95%D7%91.png">
 
     <!-- פונט -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,16 +44,23 @@
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
+      "@id": "https://carmit-therapy.netlify.app/#business",
       "name": "כרמית משה – טיפול רגשי לילדים ונוער",
       "description": "קליניקה לטיפול רגשי לילדים ונוער. פסיכותרפיה הוליסטית, פסיכודרמה, CBT ומיינדפולנס.",
-      "url": "https://carmit-therapy.netlify.app",
+      "url": "https://carmit-therapy.netlify.app/",
       "telephone": "+972-52-950-3313",
-      "email": "carmitmo291@gmail.com",
-      "areaServed": "פתח-תקווה והסביבה",
+      "email": "carmit.therapy291@gmail.com",
+      "areaServed": [
+        {"@type": "City", "name": "פתח-תקווה"},
+        {"@type": "City", "name": "בני ברק"},
+        {"@type": "City", "name": "ראש העין"},
+        {"@type": "City", "name": "יהוד"}
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "רחוב ויסוקר 1",
         "addressLocality": "פתח-תקווה",
+        "addressRegion": "מרכז",
         "addressCountry": "IL"
       },
       "openingHoursSpecification": [
@@ -433,11 +440,16 @@
                 <form class="contact-form" id="contactForm">
                     <h3>טופס יצירת קשר</h3>
 
-                    <input type="text" name="parentName" placeholder="שם ההורה" required>
-                    <input type="text" name="childName"  placeholder="שם הילד/ה (לא חובה)">
-                    <input type="tel"  name="phone"      placeholder="טלפון" required>
-                    <input type="email" name="email"     placeholder="אימייל (לא חובה)">
-                    <textarea rows="4" name="message" placeholder="ספרו בקצרה מה מעסיק אתכם" required></textarea>
+                    <label for="parentName" class="sr-only">שם ההורה</label>
+                    <input id="parentName" type="text" name="parentName" placeholder="שם ההורה" required aria-required="true">
+                    <label for="childName" class="sr-only">שם הילד/ה</label>
+                    <input id="childName" type="text" name="childName"  placeholder="שם הילד/ה (לא חובה)">
+                    <label for="phone" class="sr-only">טלפון</label>
+                    <input id="phone" type="tel"  name="phone"      placeholder="טלפון" required aria-required="true">
+                    <label for="email" class="sr-only">אימייל</label>
+                    <input id="email" type="email" name="email"     placeholder="אימייל (לא חובה)">
+                    <label for="message" class="sr-only">הודעה</label>
+                    <textarea id="message" rows="4" name="message" placeholder="ספרו בקצרה מה מעסיק אתכם" required aria-required="true"></textarea>
 
                     <button type="submit" class="btn primary full">שלחו הודעה</button>
 

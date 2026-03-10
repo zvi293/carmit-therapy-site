@@ -100,4 +100,4 @@ If unsure about content or wording — do NOT modify it automatically.
 
 GOAL
 
-Preserve a professional, calm, and trustworthy therapy website experience while making safe technical improvements when required.
+Preserve a professional, calm, and trustworthy therapy website experience while making safe technical improvements when required..

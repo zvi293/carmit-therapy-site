@@ -28,15 +28,15 @@
     <meta property="og:description" content="טיפול רגשי לילדים בפתח תקווה – חרדות, ביטחון עצמי, קשיים חברתיים. מרחב בטוח עם כרמית משה.">
     <meta property="og:url" content="https://carmit-therapy.com/">
     <meta property="og:site_name" content="כרמית משה – טיפול רגשי לילדים ונוער">
-    <meta property="og:image" content="https://carmit-therapy.com/image/%D7%A2%D7%99%D7%A6%D7%95%D7%91.png">
-    <meta property="og:image:width" content="512">
-    <meta property="og:image:height" content="512">
+    <meta property="og:image" content="https://carmit-therapy.com/image/og-share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="טיפול רגשי לילדים ונוער | כרמית משה">
     <meta name="twitter:description" content="מרחב רגשי בטוח לילדים ונוער – פסיכודרמה, CBT ומיינדפולנס.">
-    <meta name="twitter:image" content="https://carmit-therapy.com/image/%D7%A2%D7%99%D7%A6%D7%95%D7%91.png">
+    <meta name="twitter:image" content="https://carmit-therapy.com/image/og-share.png">
 
     <!-- Premium Hebrew typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,7 +113,7 @@
       "familyName": "משה",
       "jobTitle": "פסיכותרפיסטית הוליסטית · מטפלת רגשית בילדים ונוער",
       "description": "פסיכותרפיסטית הוליסטית, מטפלת רגשית בילדים, נוער ומבוגרים. משלבת פסיכותרפיה הוליסטית, פסיכודרמה, CBT ומיינדפולנס. בעלת קליניקה פרטית בפתח-תקווה.",
-      "image": "https://carmit-therapy.com/image/%D7%A2%D7%99%D7%A6%D7%95%D7%91.png",
+      "image": "https://carmit-therapy.com/image/og-share.png",
       "url": "https://carmit-therapy.com/",
       "telephone": "+972-52-950-3313",
       "email": "carmit.therapy291@gmail.com",
@@ -960,7 +960,8 @@
 
 <!-- Thank You Modal -->
 <div class="thank-modal" id="thankModal" role="dialog" aria-modal="true"
-     aria-labelledby="thankTitle" aria-describedby="thankMessage" aria-hidden="true">
+     aria-labelledby="thankTitle" aria-describedby="thankMessage" aria-hidden="true" hidden
+     style="display:none">
   <div class="thank-modal__backdrop" data-modal-close></div>
   <div class="thank-modal__panel" role="document">
     <button type="button" class="thank-modal__close" aria-label="סגירת חלון תודה" data-modal-close>
@@ -1213,6 +1214,7 @@
       // 1. Honeypot
       const hpEl = form.querySelector('[name="website"]');
       if (hpEl && hpEl.value.trim() !== "") {
+   && hpEl.value.trim() !== "") {
         setStatus("ההודעה נשלחה. תודה!", "ok");
         form.reset();
         return;
@@ -1300,7 +1302,7 @@
         form.reset();
         if (timeField) timeField.value = String(Date.now());
         setStatus("", null);
-        openThankModal();
+        if (typeof openThankModal === "function") openThankModal();
       } catch (err) {
         setStatus("השליחה נכשלה. נסו שוב או פנו ישירות בוואטסאפ.", "err");
         console.error(err);
@@ -1317,8 +1319,6 @@
 <script>
   // ============================================================
   // Thank You Modal — opens after a successful form submission
-  // Features: focus trap, Esc to close, backdrop click,
-  //           auto-close countdown, reduced-motion aware
   // ============================================================
   (function () {
     const modal = document.getElementById("thankModal");
@@ -1354,17 +1354,17 @@
 
     window.openThankModal = function () {
       previouslyFocused = document.activeElement;
+      modal.removeAttribute("hidden");
+      modal.style.removeProperty("display");
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
       document.addEventListener("keydown", onKey);
 
-      // Focus the "הבנתי" button so Enter dismisses easily
       setTimeout(() => {
         const firstBtn = panel.querySelector("button[data-modal-close]");
         if (firstBtn) firstBtn.focus();
       }, 50);
 
-      // Start auto-close countdown (8 seconds)
       let secondsLeft = 8;
       if (countdownEl) countdownEl.textContent = secondsLeft;
       countdownTimer = setInterval(() => {
@@ -1377,27 +1377,32 @@
 
     window.closeThankModal = function () {
       modal.setAttribute("aria-hidden", "true");
+      modal.setAttribute("hidden", "");
+      modal.style.display = "none";
       document.body.style.overflow = "";
       document.removeEventListener("keydown", onKey);
       if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
       if (autoCloseTimer) { clearTimeout(autoCloseTimer); autoCloseTimer = null; }
-      // Return focus to whatever opened the modal (the submit button)
       if (previouslyFocused && previouslyFocused.focus) {
         try { previouslyFocused.focus(); } catch (_) {}
       }
     };
 
-    // Wire up all close triggers (X, backdrop, "הבנתי" button)
     modal.querySelectorAll("[data-modal-close]").forEach((el) => {
       el.addEventListener("click", closeThankModal);
     });
 
-    // If the user starts interacting with the modal, stop the auto-close
     panel.addEventListener("mouseenter", () => {
       if (autoCloseTimer) { clearTimeout(autoCloseTimer); autoCloseTimer = null; }
       if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
       if (countdownEl) countdownEl.parentElement.style.display = "none";
     });
+  })();
+</script>
+
+</body>
+</html>
+
   })();
 </script>
 

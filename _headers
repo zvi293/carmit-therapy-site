@@ -2,17 +2,44 @@
 # Security + caching headers for all routes
 
 /*
+  # Clickjacking protection
   X-Frame-Options: DENY
+  # MIME-sniffing protection
   X-Content-Type-Options: nosniff
+  # Referrer leakage protection
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Content-Security-Policy: default-src 'self' https: data:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self' https:; frame-src https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'
+  # HSTS: force HTTPS for 2 years, include subdomains, eligible for preload list
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  # Cross-origin isolation (prevents Spectre-class attacks, opt-in)
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-site
+  # Disable powerful APIs we don't use
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(self), xr-spatial-tracking=()
+  # Content Security Policy — what can run / load on the page
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://script.google.com https://script.googleusercontent.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src https://www.google.com https://maps.google.com; form-action 'self' https://script.google.com; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
 
+# HTML pages — revalidate on every load (so site updates show immediately)
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
+# Static assets — cache hard (filename changes would invalidate)
 /style.css
   Cache-Control: public, max-age=31536000, immutable
 
 /image/*
   Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+# llms.txt — let AI engines re-fetch periodically
+/llms.txt
+  Cache-Control: public, max-age=3600
+  Content-Type: text/plain; charset=utf-8
+
+# robots & sitemap — recheck every hour
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600

@@ -1974,8 +1974,58 @@ p { margin: 0 0 1rem; }
 .form-status {
     font-size: 0.92rem;
     font-weight: 600;
-    color: var(--warm-deep);
+    color: var(--text-soft);
     text-align: center;
+    margin: 0;
+    min-height: 1.4em;
+    transition: color 0.2s;
+}
+.form-status--ok { color: #1d8a4f; }
+.form-status--err { color: #c0392b; }
+
+.field-help {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+/* Honeypot — fully hidden from humans, screen readers AND keyboard */
+.hp-field {
+    position: absolute !important;
+    left: -10000px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Disabled / in-flight submit button */
+.btn:disabled,
+.btn[aria-busy="true"] {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Visible focus ring for keyboard users on all form fields */
+.field input:focus-visible,
+.field textarea:focus-visible,
+.btn:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Required field visual marker */
+.field label::after {
+    content: "";
+}
+.field input[required] + label::after,
+.field label[for]:has(+ [required])::after {
+    content: " *";
+    color: var(--warm-deep);
 }
 
 /* Map */
@@ -2459,3 +2509,87 @@ p { margin: 0 0 1rem; }
     margin-bottom: 1.4rem; color: var(--text-main); font-weight: 600;
 }
 .seo-landing .cta-box .btn-group { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+/* =========================================================
+   Accessibility — focus, motion, screen-reader, contrast
+   ========================================================= */
+
+/* Visible focus ring for keyboard users everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+details summary:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+    outline: 3px solid var(--accent, #5e7bff);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Skip link — invisible until focused */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    padding: 12px 20px;
+    background: var(--accent-dark);
+    color: var(--white);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    font-weight: 700;
+    text-decoration: none;
+}
+.skip-link:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    outline: 3px solid var(--warm);
+}
+
+/* Screen-reader-only utility */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0,0,0,0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Respect "reduce motion" OS preference — kill all animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .marquee-track {
+        animation: none !important;
+    }
+}
+
+/* High-contrast / forced-colors mode (Windows High Contrast) */
+@media (forced-colors: active) {
+    .btn { border: 2px solid CanvasText; }
+    a { text-decoration: underline; }
+    .seo-card,
+    .testimonial-card,
+    .method-card { border: 1px solid CanvasText; }
+}
+
+/* Make sure reveal elements never permanently hide on JS-off */
+@media (scripting: none) {
+    .reveal { opacity: 1 !important; transform: none !important; }
+}
+.reveal { transition: opacity 0.6s ease, transform 0.6s ease; }

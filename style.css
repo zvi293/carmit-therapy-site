@@ -1580,22 +1580,39 @@ p { margin: 0 0 1rem; }
 .guide-card-img {
     aspect-ratio: 16 / 10;
     background: linear-gradient(135deg, var(--accent-soft), var(--accent-light));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     position: relative;
     overflow: hidden;
+    transition: transform 0.6s var(--ease-out);
+}
+.guide-card:hover .guide-card-img {
+    transform: scale(1.04);
 }
 .guide-card-img::after {
-    content: "✿";
+    content: "";
     position: absolute;
-    inset-inline-end: 18px;
-    bottom: 14px;
-    font-size: 1.5rem;
-    color: var(--white);
-    opacity: 0.6;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(255, 255, 255, 0.18) 100%);
+    pointer-events: none;
 }
-.guide-card--one .guide-card-img { background: linear-gradient(135deg, var(--warm), var(--warm-soft)); }
-.guide-card--two .guide-card-img { background: linear-gradient(135deg, var(--accent), var(--accent-light)); }
-.guide-card--three .guide-card-img { background: linear-gradient(135deg, var(--sunshine), var(--warm-soft)); }
-.guide-card--four .guide-card-img { background: linear-gradient(135deg, var(--mint), var(--accent-soft)); }
+.guide-card--one .guide-card-img {
+    background-image: url("image/guide-anxiety.svg");
+    background-color: #ffd6b8;
+}
+.guide-card--two .guide-card-img {
+    background-image: url("image/guide-cbt.svg");
+    background-color: #5e7bff;
+}
+.guide-card--three .guide-card-img {
+    background-image: url("image/guide-signs.svg");
+    background-color: #fef3c7;
+}
+.guide-card--four .guide-card-img {
+    background-image: url("image/guide-therapist.svg");
+    background-color: #d8efe4;
+}
 
 .guide-card-body {
     padding: 22px 22px 24px;

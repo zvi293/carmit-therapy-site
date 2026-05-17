@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="signsBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="55%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#ffe8d6"/>
+    </linearGradient>
+    <radialGradient id="signsGlow" cx="50%" cy="55%" r="60%">
+      <stop offset="0%" stop-color="#fff8dc" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#fff8dc" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="250" fill="url(#signsBg)"/>
+  <ellipse cx="200" cy="135" rx="190" ry="130" fill="url(#signsGlow)"/>
+
+  <!-- Decorative flowers and leaves -->
+  <g opacity="0.85">
+    <!-- Top-left leaf -->
+    <g transform="translate(45,42) rotate(-25)">
+      <path d="M0 0 q12 -22 28 -7 q-15 25 -28 7 z" fill="#d8efe4" stroke="#7ab092" stroke-width="1.5"/>
+    </g>
+    <!-- Top-right flower -->
+    <g transform="translate(355,45)">
+      <circle cx="0" cy="-9" r="7" fill="#ffd6b8"/>
+      <circle cx="8" cy="4" r="7" fill="#ffd6b8"/>
+      <circle cx="-8" cy="4" r="7" fill="#ffd6b8"/>
+      <circle cx="0" cy="10" r="7" fill="#ffd6b8"/>
+      <circle cx="0" cy="0" r="4.5" fill="#ff9a5a"/>
+    </g>
+    <!-- Bottom dots -->
+    <circle cx="40" cy="210" r="4.5" fill="#ffd6b8"/>
+    <circle cx="55" cy="225" r="3" fill="#ffc4a0"/>
+    <circle cx="70" cy="208" r="4" fill="#ffd6b8"/>
+    <g transform="translate(360,210) rotate(160)">
+      <path d="M0 0 q14 -22 30 -7 q-16 25 -30 7 z" fill="#d8efe4" stroke="#7ab092" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- Tiny sparkles -->
+  <g fill="#ff9a5a" opacity="0.7">
+    <path d="M85 110 l1.5 -5 l1.5 5 l5 1.5 l-5 1.5 l-1.5 5 l-1.5 -5 l-5 -1.5 z"/>
+    <path d="M320 165 l1.5 -5 l1.5 5 l5 1.5 l-5 1.5 l-1.5 5 l-1.5 -5 l-5 -1.5 z"/>
+  </g>
+
+  <!-- Open journal/notebook (LARGE, CENTERED) -->
+  <g transform="translate(200, 140)">
+    <!-- Book shadow -->
+    <ellipse cx="0" cy="80" rx="130" ry="9" fill="#000" opacity="0.1"/>
+
+    <!-- Left page -->
+    <path d="M-120 -70 L-8 -70 L0 -62 L0 75 L-8 82 L-120 82 Z"
+          fill="#fff8e7" stroke="#c8a26a" stroke-width="2.4" stroke-linejoin="round"/>
+    <!-- Right page -->
+    <path d="M120 -70 L8 -70 L0 -62 L0 75 L8 82 L120 82 Z"
+          fill="#fff8e7" stroke="#c8a26a" stroke-width="2.4" stroke-linejoin="round"/>
+
+    <!-- Spine line -->
+    <line x1="0" y1="-62" x2="0" y2="75" stroke="#c8a26a" stroke-width="1.8"/>
+
+    <!-- Lines on left page -->
+    <g stroke="#c8a26a" stroke-width="1.4" stroke-linecap="round" opacity="0.55">
+      <line x1="-105" y1="-50" x2="-20" y2="-50"/>
+      <line x1="-105" y1="-32" x2="-35" y2="-32"/>
+      <line x1="-105" y1="-14" x2="-20" y2="-14"/>
+      <line x1="-105" y1="4" x2="-45" y2="4"/>
+      <line x1="-105" y1="22" x2="-25" y2="22"/>
+      <line x1="-105" y1="40" x2="-40" y2="40"/>
+      <line x1="-105" y1="58" x2="-50" y2="58"/>
+    </g>
+
+    <!-- Emotion faces on right page -->
+    <g stroke="#c8754a" stroke-width="2" fill="none" stroke-linecap="round">
+      <!-- Happy face -->
+      <g transform="translate(30,-38)">
+        <circle r="15" fill="#ffe8d6" stroke="#c8754a"/>
+        <circle cx="-4" cy="-3" r="1.6" fill="#c8754a" stroke="none"/>
+        <circle cx="4" cy="-3" r="1.6" fill="#c8754a" stroke="none"/>
+        <path d="M-5 4 q5 4 10 0"/>
+      </g>
+      <!-- Sad face -->
+      <g transform="translate(70,-5)">
+        <circle r="15" fill="#ffe1cd" stroke="#c8754a"/>
+        <circle cx="-4" cy="-3" r="1.6" fill="#c8754a" stroke="none"/>
+        <circle cx="4" cy="-3" r="1.6" fill="#c8754a" stroke="none"/>
+        <path d="M-5 7 q5 -4 10 0"/>
+      </g>
+      <!-- HIGHLIGHTED warning face -->
+      <g transform="translate(30,30)">
+        <circle r="18" fill="#fff" stroke="#ff9a5a" stroke-width="3"/>
+        <circle cx="-5" cy="-4" r="2" fill="#ff9a5a" stroke="none"/>
+        <circle cx="5" cy="-4" r="2" fill="#ff9a5a" stroke="none"/>
+        <path d="M-6 8 q6 -5 12 0" stroke="#ff9a5a"/>
+        <!-- Tear -->
+        <path d="M-5 2 q-1.5 5 0 8 q1.5 -4 0 -8 z" fill="#5e7bff" stroke="#3241b7" stroke-width="0.9"/>
+      </g>
+      <!-- Angry face -->
+      <g transform="translate(75,50)">
+        <circle r="14" fill="#ffd6b8" stroke="#c8754a"/>
+        <line x1="-7" y1="-5" x2="-2" y2="-2" stroke-width="1.8"/>
+        <line x1="7" y1="-5" x2="2" y2="-2" stroke-width="1.8"/>
+        <line x1="-5" y1="5" x2="5" y2="5"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Magnifying glass overlay -->
+  <g transform="translate(135, 95)">
+    <circle r="28" fill="#fff" fill-opacity="0.45" stroke="#c8754a" stroke-width="3.5"/>
+    <circle r="28" fill="none" stroke="#fef3c7" stroke-width="1.2"/>
+    <line x1="20" y1="20" x2="40" y2="40" stroke="#c8754a" stroke-width="5" stroke-linecap="round"/>
+    <line x1="20" y1="20" x2="40" y2="40" stroke="#ff9a5a" stroke-width="2" stroke-linecap="round"/>
+    <!-- Heart inside -->
+    <path d="M0 -2 c-7 -9 -16 -1.5 -12 5.5 c3 5.5 12 12 12 12 s9 -6.5 12 -12 c4 -7 -5 -14.5 -12 -5.5 z"
+          fill="#ff9a5a" stroke="#c8754a" stroke-width="1.2"/>
+    <ellipse cx="-3" cy="-1" rx="1.5" ry="2.2" fill="#fff" opacity="0.6"/>
+  </g>
+
+  <!-- Pencil -->
+  <g transform="translate(310, 200) rotate(-30)">
+    <rect x="-30" y="-4.5" width="60" height="9" fill="#fef3c7" stroke="#c8a26a" stroke-width="1.8" rx="1.5"/>
+    <rect x="-30" y="-4.5" width="14" height="9" fill="#ffd6b8" stroke="#c8a26a" stroke-width="1.8" rx="1.5"/>
+    <polygon points="30,-4.5 38,0 30,4.5" fill="#1f2933" stroke="#c8a26a" stroke-width="1.2"/>
+  </g>
+</svg>

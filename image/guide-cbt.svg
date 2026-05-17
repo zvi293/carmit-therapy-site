@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="cbtBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5e7bff"/>
+      <stop offset="100%" stop-color="#a7b5ff"/>
+    </linearGradient>
+    <radialGradient id="cbtGlow" cx="50%" cy="55%" r="58%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bulbGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff8dc"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="250" fill="url(#cbtBg)"/>
+  <ellipse cx="200" cy="130" rx="170" ry="115" fill="url(#cbtGlow)"/>
+
+  <!-- Star sparkles -->
+  <g fill="#fff">
+    <circle cx="40" cy="50" r="2.5" opacity="0.85"/>
+    <circle cx="70" cy="80" r="2" opacity="0.7"/>
+    <circle cx="50" cy="170" r="2.5" opacity="0.75"/>
+    <circle cx="65" cy="210" r="2" opacity="0.7"/>
+    <circle cx="360" cy="55" r="2.5" opacity="0.85"/>
+    <circle cx="335" cy="100" r="2" opacity="0.7"/>
+    <circle cx="365" cy="195" r="2.5" opacity="0.8"/>
+    <circle cx="340" cy="215" r="2" opacity="0.7"/>
+  </g>
+
+  <!-- Twinkle 4-point stars -->
+  <g fill="#fff" opacity="0.95">
+    <path d="M85 45 l2 -6 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 z"/>
+    <path d="M320 195 l2 -6 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 z"/>
+    <path d="M30 130 l1.5 -5 l1.5 5 l5 1.5 l-5 1.5 l-1.5 5 l-1.5 -5 l-5 -1.5 z"/>
+    <path d="M370 130 l1.5 -5 l1.5 5 l5 1.5 l-5 1.5 l-1.5 5 l-1.5 -5 l-5 -1.5 z"/>
+  </g>
+
+  <!-- Light rays radiating from bulb -->
+  <g stroke="#fef3c7" stroke-width="3" stroke-linecap="round" opacity="0.9">
+    <line x1="200" y1="55" x2="200" y2="38"/>
+    <line x1="160" y1="75" x2="148" y2="63"/>
+    <line x1="240" y1="75" x2="252" y2="63"/>
+    <line x1="145" y1="115" x2="130" y2="115"/>
+    <line x1="255" y1="115" x2="270" y2="115"/>
+  </g>
+
+  <!-- Lightbulb (LARGE, CENTERED) -->
+  <g transform="translate(200, 125)">
+    <!-- Bulb glow halo -->
+    <circle cx="0" cy="-15" r="55" fill="#fff" opacity="0.25"/>
+    <circle cx="0" cy="-15" r="45" fill="#fff8dc" opacity="0.45"/>
+
+    <!-- Bulb glass -->
+    <path d="M-30 25
+             C -45 15, -50 -5, -45 -25
+             C -38 -45, -20 -55, 0 -55
+             C 20 -55, 38 -45, 45 -25
+             C 50 -5, 45 15, 30 25
+             L 30 35
+             L -30 35
+             Z"
+          fill="url(#bulbGlow)" stroke="#1f2933" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- Bulb base (screw) -->
+    <rect x="-22" y="35" width="44" height="6" rx="2" fill="#a7b5ff" stroke="#1f2933" stroke-width="2.5"/>
+    <rect x="-22" y="44" width="44" height="5" rx="2" fill="#a7b5ff" stroke="#1f2933" stroke-width="2.5"/>
+    <rect x="-15" y="52" width="30" height="5" rx="2" fill="#3241b7" stroke="#1f2933" stroke-width="2.5"/>
+
+    <!-- Filament heart inside -->
+    <path d="M0 -5
+             C -10 -18, -22 -10, -22 0
+             C -22 8, -8 18, 0 22
+             C 0 22, 22 8, 22 0
+             C 22 -10, 10 -18, 0 -5 Z"
+          fill="#ff9a5a" stroke="#3241b7" stroke-width="2"/>
+    <!-- Heart highlight -->
+    <ellipse cx="-9" cy="-3" rx="3" ry="4" fill="#fff" opacity="0.7"/>
+  </g>
+
+  <!-- Tiny floating hearts -->
+  <g fill="#fff" opacity="0.85">
+    <path d="M55 95 c-4 -5 -10 -1 -7 4 c2 4 7 8 7 8 s5 -4 7 -8 c3 -5 -3 -9 -7 -4 z"/>
+    <path d="M345 145 c-3 -4 -8 -1 -6 3 c1.5 3 6 7 6 7 s4.5 -4 6 -7 c2 -4 -3 -7 -6 -3 z"/>
+  </g>
+</svg>

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="anxBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb88a"/>
+      <stop offset="55%" stop-color="#ffd6b8"/>
+      <stop offset="100%" stop-color="#ffe8d6"/>
+    </linearGradient>
+    <radialGradient id="anxGlow" cx="50%" cy="60%" r="55%">
+      <stop offset="0%" stop-color="#fff1e3" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#fff1e3" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cupGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fff1e3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="250" fill="url(#anxBg)"/>
+  <ellipse cx="200" cy="155" rx="180" ry="120" fill="url(#anxGlow)"/>
+
+  <!-- Decorative dots -->
+  <circle cx="50" cy="50" r="3" fill="#fff" opacity="0.6"/>
+  <circle cx="80" cy="35" r="2" fill="#fff" opacity="0.7"/>
+  <circle cx="350" cy="45" r="3" fill="#fff" opacity="0.6"/>
+  <circle cx="370" cy="80" r="2.5" fill="#fff" opacity="0.7"/>
+  <circle cx="40" cy="220" r="3" fill="#fff" opacity="0.6"/>
+  <circle cx="360" cy="215" r="2.5" fill="#fff" opacity="0.7"/>
+
+  <!-- Steam from tea (calming breath) -->
+  <g stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8">
+    <path d="M175 60 q-6 -12 0 -22 q6 -12 0 -22"/>
+    <path d="M200 50 q-6 -12 0 -22 q6 -12 0 -22"/>
+    <path d="M225 60 q-6 -12 0 -22 q6 -12 0 -22"/>
+  </g>
+
+  <!-- Saucer shadow -->
+  <ellipse cx="200" cy="208" rx="95" ry="8" fill="#000" opacity="0.08"/>
+
+  <!-- Saucer -->
+  <ellipse cx="200" cy="200" rx="90" ry="12" fill="#fff" stroke="#c8754a" stroke-width="2.5"/>
+  <ellipse cx="200" cy="198" rx="80" ry="9" fill="#fff1e3" stroke="#c8754a" stroke-width="1.5"/>
+
+  <!-- Mug body -->
+  <path d="M140 100
+           L 140 175
+           Q 140 195, 165 195
+           L 235 195
+           Q 260 195, 260 175
+           L 260 100
+           Z"
+        fill="url(#cupGrad)" stroke="#a8542a" stroke-width="3" stroke-linejoin="round"/>
+
+  <!-- Mug rim -->
+  <ellipse cx="200" cy="100" rx="60" ry="10" fill="#fff" stroke="#a8542a" stroke-width="3"/>
+  <ellipse cx="200" cy="100" rx="55" ry="7" fill="#ffe1cd" stroke="none"/>
+
+  <!-- Mug handle -->
+  <path d="M260 120
+           Q 295 120, 295 145
+           Q 295 170, 260 170"
+        fill="none" stroke="#a8542a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M260 130
+           Q 285 130, 285 145
+           Q 285 160, 260 160"
+        fill="none" stroke="#a8542a" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Heart on mug -->
+  <path d="M200 155
+           C 188 142, 175 145, 175 158
+           C 175 170, 200 185, 200 185
+           C 200 185, 225 170, 225 158
+           C 225 145, 212 142, 200 155 Z"
+        fill="#ff9a5a" stroke="#a8542a" stroke-width="2"/>
+  <!-- Heart highlight -->
+  <ellipse cx="190" cy="160" rx="4" ry="5" fill="#fff" opacity="0.6"/>
+
+  <!-- Cute leaf decoration -->
+  <g transform="translate(80,160) rotate(-25)">
+    <path d="M0 0 q12 -22 28 -7 q-15 25 -28 7 z" fill="#d8efe4" stroke="#7ab092" stroke-width="1.5"/>
+  </g>
+  <g transform="translate(320,165) rotate(160)">
+    <path d="M0 0 q12 -22 28 -7 q-15 25 -28 7 z" fill="#d8efe4" stroke="#7ab092" stroke-width="1.5"/>
+  </g>
+
+  <!-- Tiny sparkles -->
+  <g fill="#ff9a5a" opacity="0.7">
+    <path d="M105 100 l1.5 -5 l1.5 5 l5 1.5 l-5 1.5 l-1.5 5 l-1.5 -5 l-5 -1.5 z"/>
+    <path d="M295 95 l1.5 -5 l1.5 5 l5 1.5 l-5 1.5 l-1.5 5 l-1.5 -5 l-5 -1.5 z"/>
+  </g>
+</svg>

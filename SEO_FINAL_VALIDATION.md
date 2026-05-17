@@ -1,5 +1,5 @@
 # SEO Final Validation Report
-**Site:** https://carmit-therapy.netlify.app  
+**Site:** https://carmit-therapy.com  
 **Date:** 2026-03-06  
 **Scope:** Advanced SEO Authority Optimization – All 10 Phases  
 
@@ -132,7 +132,7 @@ All pages specify `og:image:width` and `og:image:height` ✅
 
 | URL | In Sitemap | Priority | Canonical Match |
 |---|---|---|---|
-| `https://carmit-therapy.netlify.app/` | ✅ | 1.0 | ✅ |
+| `https://carmit-therapy.com/` | ✅ | 1.0 | ✅ |
 | `.../therapy-children-petah-tikva.html` | ✅ | 0.9 | ✅ |
 | `.../psychotherapist-children-petah-tikva.html` | ✅ | 0.9 | ✅ |
 | `.../cbt-children-petah-tikva.html` | ✅ | 0.9 | ✅ |

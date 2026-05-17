@@ -1,10 +1,10 @@
 # SEO AUDIT — Carmit Therapy Site
-> Generated: 2026-03-06 | Domain: `https://carmit-therapy.netlify.app`
+> Generated: 2026-03-06 | Domain: `https://carmit-therapy.com`
 
 ---
 
 ## DOMAIN CONSTANT
-**Production URL:** `https://carmit-therapy.netlify.app`  
+**Production URL:** `https://carmit-therapy.com`  
 All canonical, og:url, and sitemap.xml entries use this base. If a custom domain is obtained later, do a global find-and-replace.
 
 ---
@@ -29,7 +29,7 @@ All canonical, og:url, and sitemap.xml entries use this base. If a custom domain
 |---|-------|-------|-----|
 | 1 | `og:image` references non-existent `/image/og-cover.jpg` | all pages | Point to an existing image (`/image/salon.jpg.jpeg` or logo) |
 | 2 | Sitemap missing `privacy.html` | sitemap.xml | Add entry |
-| 3 | `index.html` canonical missing trailing slash | index.html | `https://carmit-therapy.netlify.app/` |
+| 3 | `index.html` canonical missing trailing slash | index.html | `https://carmit-therapy.com/` |
 | 4 | Form inputs lack `<label>` (accessibility + SEO) | index.html | Add visually-hidden `<label>` elements |
 | 5 | `privacy.html` missing OG, Twitter, `theme-color` | privacy.html | Add full head block |
 | 6 | Landing pages footer missing cross-links to sibling SEO pages | 3 landing pages | Add `footer-seo-links` section |

@@ -919,6 +919,7 @@ p { margin: 0 0 1rem; }
     background: linear-gradient(160deg, var(--bg-soft) 0%, var(--bg-peach) 100%);
     box-shadow: var(--shadow-lg);
     border: 6px solid var(--white);
+    padding: 18px;
 }
 .about-portrait-frame img {
     width: 100%;
@@ -926,6 +927,7 @@ p { margin: 0 0 1rem; }
     object-fit: cover;
     object-position: 50% 100%;
     display: block;
+    border-radius: calc(var(--radius-xl) - 18px);
 }
 
 .about-portrait::before {

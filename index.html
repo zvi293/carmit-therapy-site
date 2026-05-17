@@ -875,9 +875,9 @@
                         <p class="form-intro">השאירו פרטים — אחזור אליכם תוך 24 שעות. ללא התחייבות.</p>
 
                         <!-- Honeypot: invisible to humans, bots fill it. If filled = silently reject. -->
-                        <div class="hp-field" aria-hidden="true">
-                            <label for="website">Website (do not fill)</label>
-                            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                        <div class="hp-field" aria-hidden="true" style="position:absolute !important;left:-10000px !important;top:-10000px !important;width:1px !important;height:1px !important;overflow:hidden !important;opacity:0 !important;pointer-events:none !important;visibility:hidden !important;">
+                            <label for="website" style="position:absolute !important;left:-10000px !important;">Website (do not fill)</label>
+                            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute !important;left:-10000px !important;">
                         </div>
                         <!-- Time-trap: stores when the form was loaded -->
                         <input type="hidden" name="_t" id="_t" value="">
@@ -1214,7 +1214,6 @@
       // 1. Honeypot
       const hpEl = form.querySelector('[name="website"]');
       if (hpEl && hpEl.value.trim() !== "") {
-   && hpEl.value.trim() !== "") {
         setStatus("ההודעה נשלחה. תודה!", "ok");
         form.reset();
         return;
@@ -1403,6 +1402,16 @@
 </body>
 </html>
 
+  })();
+</script>
+
+</body>
+</html>
+anel.addEventListener("mouseenter", () => {
+      if (autoCloseTimer) { clearTimeout(autoCloseTimer); autoCloseTimer = null; }
+      if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+      if (countdownEl) countdownEl.parentElement.style.display = "none";
+    });
   })();
 </script>
 

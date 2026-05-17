@@ -266,6 +266,70 @@
           <li>כתובת דואר אלקטרוני</li>
           <li>תוכן ההודעה ופרטים שתבחר/י לשתף לצורך הפנייה</li>
         </ul>
+        </ul>
         <h3>3.2 מידע טכני שנאסף אוטומטית</h3>
         <ul>
-     
+          <li>כתובת IP</li>
+          <li>סוג דפדפן ומערכת הפעלה</li>
+          <li>תאריך ושעת ביקור</li>
+          <li>דפים שנצפו ומשך הביקור</li>
+          <li>מקור הגעה (Referrer)</li>
+        </ul>
+      </section>
+
+      <section class="legal-section" id="sec-4">
+        <h2><span class="num">4</span>אופן איסוף המידע</h2>
+        <p>המידע נאסף בדרך של מילוי טופס יצירת קשר באתר, יצירת קשר ישיר באמצעות הטלפון, וואטסאפ או אימייל, או שימוש בעוגיות (cookies) באתר. המידע הטכני נאסף אוטומטית באמצעות יומני שרת ושירותי אנליטיקה.</p>
+      </section>
+
+      <section class="legal-section" id="sec-5">
+        <h2><span class="num">5</span>מטרות השימוש במידע</h2>
+        <ul>
+          <li>חזרה לפנייתך וקביעת שיחת היכרות</li>
+          <li>מתן שירותי טיפול ותקשורת שוטפת</li>
+          <li>שיפור איכות האתר והשירותים</li>
+          <li>עמידה בדרישות חוקיות ומקצועיות</li>
+        </ul>
+      </section>
+
+      <section class="legal-section" id="sec-13">
+        <h2><span class="num">13</span>סודיות טיפולית מקצועית</h2>
+        <p>כל מידע שמועבר במהלך הטיפול עצמו חוסה תחת חובת סודיות מקצועית מוחלטת, מעבר להגנות הטכניות באתר. החריג היחיד הוא מצב של סכנה ממשית, ואז חלה חובת דיווח מקצועית.</p>
+      </section>
+
+      <section class="legal-section" id="sec-16">
+        <h2><span class="num">16</span>דין שיפוט וסמכות</h2>
+        <p>על מדיניות זו יחולו דיני מדינת ישראל בלבד. סמכות השיפוט הבלעדית בכל סכסוך הקשור למדיניות זו תהיה לבתי המשפט המוסמכים בעיר תל-אביב-יפו.</p>
+        <div class="legal-callout">
+          <p>לשאלות הקשורות למדיניות הפרטיות ניתן לפנות אליי בטלפון <strong>052-950-3313</strong> או באימייל <strong>carmit.therapy291@gmail.com</strong>.</p>
+        </div>
+        <a class="legal-back" href="index.html">→ חזרה לדף הבית</a>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 כרמית משה — טיפול רגשי לילדים ונוער.</p>
+      <p class="footer-credit">בנייה ופיתוח: <a href="https://nz-web.com/" target="_blank" rel="noopener noreferrer">NZ web</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.main-nav');
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+</script>
+
+</body>
+</html>

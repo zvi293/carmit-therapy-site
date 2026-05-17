@@ -314,3 +314,84 @@
                     <div class="logo-mark"><img src="./image/עיצוב.png" alt="לוגו" width="46" height="46"></div>
                     <div class="logo-text">
                         <span class="logo-title">כרמית משה</span>
+                        <span class="logo-subtitle">טיפול רגשי לילדים ונוער</span>
+                    </div>
+                </div>
+                <p>קליניקה לטיפול רגשי לילדים, נוער ומבוגרים בפתח-תקווה. מרחב בטוח לחרדות, קשיים חברתיים, ביטחון עצמי ומעברי חיים.</p>
+            </div>
+            <div class="footer-col">
+                <h4>ניווט</h4>
+                <ul>
+                    <li><a href="index.html">דף הבית</a></li>
+                    <li><a href="index.html#about">אודות כרמית</a></li>
+                    <li><a href="index.html#methods">השיטות</a></li>
+                    <li><a href="index.html#process">התהליך</a></li>
+                    <li><a href="index.html#faq">שאלות נפוצות</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>מאמרים</h4>
+                <ul>
+                    <li><a href="therapy-children-petah-tikva.html">טיפול רגשי לילדים</a></li>
+                    <li><a href="cbt-children-petah-tikva.html">CBT לילדים</a></li>
+                    <li><a href="psychotherapist-children-petah-tikva.html">פסיכותרפיסטית לילדים</a></li>
+                    <li><a href="privacy.html">מדיניות פרטיות</a></li>
+                    <li><a href="terms.html">תנאי שימוש</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>צרו קשר</h4>
+                <ul>
+                    <li><a href="tel:+972529503313">052-950-3313</a></li>
+                    <li><a href="https://wa.me/972529503313" target="_blank" rel="noopener">וואטסאפ</a></li>
+                    <li><a href="mailto:carmit.therapy291@gmail.com">carmit.therapy291@gmail.com</a></li>
+                    <li>רחוב ויסוקר 1, פתח-תקווה</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 כרמית משה — טיפול רגשי לילדים ונוער. <span style="opacity:0.7">המידע באתר אינו תחליף לייעוץ מקצועי אישי.</span></p>
+            <p class="footer-credit">בנייה ופיתוח: <a href="https://nz-web.com/" target="_blank" rel="noopener noreferrer">NZ web</a></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.main-nav');
+    if (navToggle && nav) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = nav.classList.toggle('open');
+            navToggle.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+    }
+    const header = document.getElementById('siteHeader');
+    const progress = document.querySelector('.read-progress');
+    function onScroll() {
+        const s = window.scrollY;
+        if (header) header.classList.toggle('is-scrolled', s > 20);
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? (s / max) * 100 : 0;
+        if (progress) progress.style.setProperty('--progress', pct + '%');
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Scroll reveal animations
+    const revealElements = document.querySelectorAll('.reveal');
+    if (revealElements.length && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+        revealElements.forEach(el => observer.observe(el));
+    } else {
+        // Fallback: show all if no IntersectionObserver
+        revealElements.forEach(el => el.classList.add('visible'));
+    }
+</script>
+
+</body>
+</html>

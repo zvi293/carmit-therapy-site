@@ -2447,6 +2447,7 @@ p { margin: 0 0 1rem; }
 }
 .seo-landing .seo-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-2px); }
 
+
 /* Warm card — for the emotional opening sections */
 .seo-landing .seo-card--warm {
     background: linear-gradient(135deg, var(--bg-peach, #fff5ed) 0%, var(--white) 100%);
@@ -2463,7 +2464,7 @@ p { margin: 0 0 1rem; }
     font-weight: 600;
 }
 
-/* Soft card — for the personal voice / process sections */
+/* Soft card — for the personal voice sections */
 .seo-landing .seo-card--soft {
     background: linear-gradient(135deg, var(--bg-soft, #f4f6ff) 0%, var(--white) 100%);
     border-color: var(--accent-soft, #c8d3ff);
@@ -2478,81 +2479,89 @@ p { margin: 0 0 1rem; }
     font-weight: 600;
 }
 
-.seo-landing .seo-body h2 {
-    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
-    color: var(--text-main); margin: 0 0 0.9rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--accent-soft);
-    display: inline-block; font-weight: 700;
+/* Hero subtitle (H2) under poetic H1 */
+.hero-subtitle {
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    color: var(--accent-dark, #3241b7);
+    font-weight: 600;
+    line-height: 1.55;
+    margin: 18px 0 14px;
+    max-width: 560px;
+    letter-spacing: 0.01em;
 }
-.seo-landing .seo-body p { line-height: 1.95; margin-bottom: 1rem; color: var(--text-main); font-size: 1rem; }
-.seo-landing .seo-body ul { padding-inline-start: 1.4rem; margin: 0 0 1rem; }
-.seo-landing .seo-body ul li { line-height: 1.85; margin-bottom: 0.5rem; color: var(--text-main); font-size: 0.98rem; }
 
-.seo-landing details {
-    border: 1px solid var(--line); border-radius: var(--radius-md);
-    padding: 0.4rem 1.1rem; margin-bottom: 0.7rem;
-    background: var(--white); transition: all 0.2s;
+/* Honeypot - fully hidden */
+.contact-form .hp-field,
+.hp-field {
+    position: absolute !important;
+    left: -10000px !important;
+    top: -10000px !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
 }
-.seo-landing details[open] { background: var(--bg-soft); border-color: var(--accent-light); box-shadow: var(--shadow-xs); }
-.seo-landing summary {
-    font-weight: 600; cursor: pointer; list-style: none;
-    font-size: 1rem; color: var(--text-main); padding: 0.8rem 0;
+.contact-form .hp-field *,
+.hp-field * {
+    position: absolute !important;
+    left: -10000px !important;
+    visibility: hidden !important;
 }
-.seo-landing summary::marker, .seo-landing summary::-webkit-details-marker { display: none; }
-.seo-landing details p { margin: 0.5rem 0; color: var(--text-muted); font-size: 0.94rem; line-height: 1.85; }
 
-.seo-landing .cta-box {
-    background:
-        radial-gradient(circle at 90% 10%, var(--bg-peach), transparent 45%),
-        linear-gradient(160deg, var(--bg-soft), var(--white));
-    border: 1px solid var(--accent-soft);
-    border-radius: var(--radius-xl);
-    padding: clamp(28px, 4vw, 48px);
-    text-align: center; margin-top: 2.5rem;
-    box-shadow: var(--shadow-sm);
-    position: relative; overflow: hidden;
+/* Form status / feedback */
+.form-status--ok { color: #1d8a4f; }
+.form-status--err { color: #c0392b; }
+
+/* Field help text */
+.field-help {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.5;
 }
-.seo-landing .cta-box::before {
-    content: "✿"; position: absolute;
-    top: 14px; inset-inline-start: 18px;
-    font-size: 1.6rem; color: var(--warm); opacity: 0.4;
+
+/* Disabled / in-flight button */
+.btn:disabled,
+.btn[aria-busy="true"] {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
 }
-.seo-landing .cta-box p {
-    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
-    margin-bottom: 1.4rem; color: var(--text-main); font-weight: 600;
+
+/* Focus-visible for keyboard users */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+    outline: 3px solid var(--accent, #5e7bff);
+    outline-offset: 3px;
+    border-radius: 4px;
 }
-.seo-landing .cta-box .btn-group { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
 /* =========================================================
-   THANK YOU MODAL — appears after successful form submission
+   THANK YOU MODAL
    ========================================================= */
 .thank-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 9000;
+    position: fixed; inset: 0; z-index: 9000;
     display: none;
-    align-items: center;
-    justify-content: center;
+    align-items: center; justify-content: center;
     padding: 20px;
 }
-.thank-modal[aria-hidden="false"] {
-    display: flex;
-    animation: thankModalIn 0.35s var(--ease-out, ease-out);
-}
+.thank-modal[aria-hidden="false"] { display: flex; }
 .thank-modal__backdrop {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: rgba(20, 26, 50, 0.55);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    animation: thankFadeIn 0.35s var(--ease-out, ease-out);
 }
 .thank-modal__panel {
-    position: relative;
-    z-index: 1;
-    max-width: 480px;
-    width: 100%;
+    position: relative; z-index: 1;
+    max-width: 480px; width: 100%;
     background: linear-gradient(160deg, #fff8f1 0%, #ffffff 60%, #f4f6ff 100%);
     border-radius: 28px;
     padding: 44px 36px 30px;
@@ -2563,19 +2572,14 @@ p { margin: 0 0 1rem; }
     overflow: hidden;
 }
 .thank-modal__close {
-    position: absolute;
-    top: 14px;
-    inset-inline-end: 14px;
-    width: 36px;
-    height: 36px;
+    position: absolute; top: 14px; inset-inline-end: 14px;
+    width: 36px; height: 36px;
     border-radius: 50%;
     border: 1px solid var(--line, #e5e7eb);
     background: var(--white, #fff);
     color: var(--text-soft, #2d3748);
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex; align-items: center; justify-content: center;
     transition: all 0.2s ease;
 }
 .thank-modal__close:hover {
@@ -2584,12 +2588,9 @@ p { margin: 0 0 1rem; }
     transform: rotate(90deg);
 }
 .thank-modal__art {
-    position: relative;
-    width: 88px;
-    height: 88px;
+    position: relative; width: 88px; height: 88px;
     margin: 0 auto 20px;
-    display: grid;
-    place-items: center;
+    display: grid; place-items: center;
 }
 .thank-modal__shape {
     position: absolute;
@@ -2597,26 +2598,14 @@ p { margin: 0 0 1rem; }
     opacity: 0.5;
     animation: thankPulse 3s ease-in-out infinite;
 }
-.thank-modal__shape--1 {
-    width: 88px; height: 88px;
-    background: var(--bg-peach, #fff3e6);
-}
-.thank-modal__shape--2 {
-    width: 70px; height: 70px;
-    background: var(--accent-soft, #e4e9ff);
-    animation-delay: 0.4s;
-}
+.thank-modal__shape--1 { width: 88px; height: 88px; background: var(--bg-peach, #fff3e6); }
+.thank-modal__shape--2 { width: 70px; height: 70px; background: var(--accent-soft, #e4e9ff); animation-delay: 0.4s; }
 .thank-modal__shape--3 {
     width: 52px; height: 52px;
     background: linear-gradient(135deg, var(--warm-deep, #ff9a5a), var(--accent, #5e7bff));
-    opacity: 0.18;
-    animation-delay: 0.2s;
+    opacity: 0.18; animation-delay: 0.2s;
 }
-.thank-modal__check {
-    position: relative;
-    z-index: 1;
-    color: #1d8a4f;
-}
+.thank-modal__check { position: relative; z-index: 1; color: #1d8a4f; }
 .thank-check__circle {
     stroke-dasharray: 151;
     stroke-dashoffset: 151;
@@ -2639,25 +2628,16 @@ p { margin: 0 0 1rem; }
     font-size: 1rem;
     line-height: 1.7;
     color: var(--text-soft, #2d3748);
-    margin: 0 0 22px;
+    margin: 0 auto 22px;
     max-width: 380px;
-    margin-inline: auto;
-    margin-bottom: 22px;
 }
-.thank-modal__message strong {
-    color: var(--warm-deep, #ff9a5a);
-}
+.thank-modal__message strong { color: var(--warm-deep, #ff9a5a); }
 .thank-modal__meta {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
     margin-bottom: 26px;
 }
 .thank-modal__meta-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    display: inline-flex; align-items: center; gap: 6px;
     font-size: 0.82rem;
     color: var(--text-muted, #6b7280);
     background: rgba(255, 255, 255, 0.7);
@@ -2667,22 +2647,15 @@ p { margin: 0 0 1rem; }
 }
 .thank-modal__meta-item svg { color: var(--accent, #5e7bff); flex-shrink: 0; }
 .thank-modal__actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
     margin-bottom: 16px;
 }
-.thank-modal__actions .btn {
-    min-width: 220px;
-}
+.thank-modal__actions .btn { min-width: 220px; }
 .thank-modal__whatsapp {
     color: var(--accent-dark, #3b4dba);
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 600; font-size: 0.9rem;
     text-decoration: none;
-    padding: 4px 8px;
-    border-radius: 6px;
+    padding: 4px 8px; border-radius: 6px;
     transition: color 0.2s;
 }
 .thank-modal__whatsapp:hover {
@@ -2695,12 +2668,9 @@ p { margin: 0 0 1rem; }
     margin: 0;
     opacity: 0.8;
 }
-
-@keyframes thankModalIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes thankFadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes thankPanelIn {
     from { opacity: 0; transform: translateY(24px) scale(0.94); }
-    to   { opacity: 1; transform: translateY(0)    scale(1); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 @keyframes thankPulse {
     0%, 100% { transform: scale(1); }
@@ -2708,107 +2678,16 @@ p { margin: 0 0 1rem; }
 }
 @keyframes thankCircle { to { stroke-dashoffset: 0; } }
 @keyframes thankTick   { to { stroke-dashoffset: 0; } }
-
 @media (max-width: 480px) {
     .thank-modal__panel { padding: 36px 22px 24px; border-radius: 22px; }
     .thank-modal__actions .btn { min-width: unset; width: 100%; }
 }
 
+/* Respect reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-    .thank-modal[aria-hidden="false"],
-    .thank-modal__backdrop,
-    .thank-modal__panel,
-    .thank-modal__shape,
-    .thank-check__circle,
-    .thank-check__tick {
-        animation: none !important;
-    }
-    .thank-check__circle,
-    .thank-check__tick {
-        stroke-dashoffset: 0 !important;
-    }
-}
-
-/* =========================================================
-   Accessibility — focus, motion, screen-reader, contrast
-   ========================================================= */
-
-/* Visible focus ring for keyboard users everywhere */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-details summary:focus-visible,
-[role="button"]:focus-visible,
-[tabindex]:focus-visible {
-    outline: 3px solid var(--accent, #5e7bff);
-    outline-offset: 3px;
-    border-radius: 4px;
-}
-
-/* Skip link — invisible until focused */
-.skip-link {
-    position: absolute;
-    left: -9999px;
-    top: 0;
-    z-index: 9999;
-    padding: 12px 20px;
-    background: var(--accent-dark);
-    color: var(--white);
-    border-radius: 0 0 var(--radius-md) var(--radius-md);
-    font-weight: 700;
-    text-decoration: none;
-}
-.skip-link:focus {
-    left: 50%;
-    transform: translateX(-50%);
-    outline: 3px solid var(--warm);
-}
-
-/* Screen-reader-only utility */
-.sr-only {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    padding: 0 !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    clip: rect(0,0,0,0) !important;
-    white-space: nowrap !important;
-    border: 0 !important;
-}
-
-/* Respect "reduce motion" OS preference — kill all animations and transitions */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
         animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
-        scroll-behavior: auto !important;
     }
-    .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-    }
-    .marquee-track {
-        animation: none !important;
-    }
-}
-
-/* High-contrast / forced-colors mode (Windows High Contrast) */
-@media (forced-colors: active) {
-    .btn { border: 2px solid CanvasText; }
-    a { text-decoration: underline; }
-    .seo-card,
-    .testimonial-card,
-    .method-card { border: 1px solid CanvasText; }
-}
-
-/* Make sure reveal elements never permanently hide on JS-off */
-@media (scripting: none) {
     .reveal { opacity: 1 !important; transform: none !important; }
 }
-.reveal { transition: opacity 0.6s ease, transform 0.6s ease; }

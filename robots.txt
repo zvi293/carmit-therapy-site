@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /*.bak$
+Disallow: /google16a87e731ef7633e.html
+Disallow: /.git/
 
 Sitemap: https://carmit-therapy.com/sitemap.xml

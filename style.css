@@ -514,6 +514,16 @@ p { margin: 0 0 1rem; }
     border-radius: 6px;
 }
 
+.hero-subtitle {
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    color: var(--accent-dark);
+    font-weight: 600;
+    line-height: 1.55;
+    margin: 18px 0 14px;
+    max-width: 560px;
+    letter-spacing: 0.01em;
+}
+
 .hero-lead {
     font-size: clamp(1.02rem, 1.3vw, 1.18rem);
     color: var(--text-soft);
@@ -2372,6 +2382,37 @@ p { margin: 0 0 1rem; }
     border-radius: 0 0 999px 999px;
 }
 .seo-landing .seo-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+
+/* Warm card — for the emotional opening sections */
+.seo-landing .seo-card--warm {
+    background: linear-gradient(135deg, var(--bg-peach, #fff5ed) 0%, var(--white) 100%);
+    border-color: var(--warm-deep, #ff9a5a);
+}
+.seo-landing .seo-card--warm::before {
+    background: linear-gradient(to right, var(--warm-deep, #ff9a5a), var(--warm, #ffb88c));
+    width: 70px;
+}
+.seo-landing .seo-card--warm h2 { border-bottom-color: var(--warm-deep, #ff9a5a); }
+.seo-landing .seo-card--warm em {
+    font-style: normal;
+    color: var(--warm-deep, #ff9a5a);
+    font-weight: 600;
+}
+
+/* Soft card — for the personal voice / process sections */
+.seo-landing .seo-card--soft {
+    background: linear-gradient(135deg, var(--bg-soft, #f4f6ff) 0%, var(--white) 100%);
+    border-color: var(--accent-soft, #c8d3ff);
+}
+.seo-landing .seo-card--soft::before {
+    background: linear-gradient(to right, var(--accent, #5e7bff), var(--accent-light, #92a5ff));
+    width: 70px;
+}
+.seo-landing .seo-card--soft em {
+    font-style: italic;
+    color: var(--accent-dark, #3b4dba);
+    font-weight: 600;
+}
 
 .seo-landing .seo-body h2 {
     font-size: clamp(1.35rem, 2.2vw, 1.7rem);

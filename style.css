@@ -1991,15 +1991,29 @@ p { margin: 0 0 1rem; }
     line-height: 1.5;
 }
 
-/* Honeypot — fully hidden from humans, screen readers AND keyboard */
+/* Honeypot — fully hidden from humans, screen readers AND keyboard.
+   We do NOT use display:none because some smart bots skip those. */
+.contact-form .hp-field,
 .hp-field {
     position: absolute !important;
     left: -10000px !important;
+    top: -10000px !important;
     width: 1px !important;
     height: 1px !important;
     overflow: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+}
+.contact-form .hp-field *,
+.hp-field * {
+    position: absolute !important;
+    left: -10000px !important;
+    top: -10000px !important;
+    width: 1px !important;
+    height: 1px !important;
+    visibility: hidden !important;
 }
 
 /* Disabled / in-flight submit button */
@@ -2509,6 +2523,211 @@ p { margin: 0 0 1rem; }
     margin-bottom: 1.4rem; color: var(--text-main); font-weight: 600;
 }
 .seo-landing .cta-box .btn-group { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+/* =========================================================
+   THANK YOU MODAL — appears after successful form submission
+   ========================================================= */
+.thank-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.thank-modal[aria-hidden="false"] {
+    display: flex;
+    animation: thankModalIn 0.35s var(--ease-out, ease-out);
+}
+.thank-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 26, 50, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: thankFadeIn 0.35s var(--ease-out, ease-out);
+}
+.thank-modal__panel {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    width: 100%;
+    background: linear-gradient(160deg, #fff8f1 0%, #ffffff 60%, #f4f6ff 100%);
+    border-radius: 28px;
+    padding: 44px 36px 30px;
+    box-shadow: 0 30px 80px -20px rgba(20, 26, 50, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    text-align: center;
+    animation: thankPanelIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+.thank-modal__close {
+    position: absolute;
+    top: 14px;
+    inset-inline-end: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--line, #e5e7eb);
+    background: var(--white, #fff);
+    color: var(--text-soft, #2d3748);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+.thank-modal__close:hover {
+    background: var(--bg-peach, #fff3e6);
+    color: var(--warm-deep, #ff9a5a);
+    transform: rotate(90deg);
+}
+.thank-modal__art {
+    position: relative;
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 20px;
+    display: grid;
+    place-items: center;
+}
+.thank-modal__shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: thankPulse 3s ease-in-out infinite;
+}
+.thank-modal__shape--1 {
+    width: 88px; height: 88px;
+    background: var(--bg-peach, #fff3e6);
+}
+.thank-modal__shape--2 {
+    width: 70px; height: 70px;
+    background: var(--accent-soft, #e4e9ff);
+    animation-delay: 0.4s;
+}
+.thank-modal__shape--3 {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--warm-deep, #ff9a5a), var(--accent, #5e7bff));
+    opacity: 0.18;
+    animation-delay: 0.2s;
+}
+.thank-modal__check {
+    position: relative;
+    z-index: 1;
+    color: #1d8a4f;
+}
+.thank-check__circle {
+    stroke-dasharray: 151;
+    stroke-dashoffset: 151;
+    animation: thankCircle 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+}
+.thank-check__tick {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: thankTick 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.7s forwards;
+}
+.thank-modal__title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    line-height: 1.3;
+    margin: 0 0 12px;
+    color: var(--text-main, #1f2933);
+    font-weight: 700;
+}
+.thank-modal__message {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-soft, #2d3748);
+    margin: 0 0 22px;
+    max-width: 380px;
+    margin-inline: auto;
+    margin-bottom: 22px;
+}
+.thank-modal__message strong {
+    color: var(--warm-deep, #ff9a5a);
+}
+.thank-modal__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 26px;
+}
+.thank-modal__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: var(--text-muted, #6b7280);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--line, #e5e7eb);
+    border-radius: 999px;
+    padding: 6px 12px;
+}
+.thank-modal__meta-item svg { color: var(--accent, #5e7bff); flex-shrink: 0; }
+.thank-modal__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.thank-modal__actions .btn {
+    min-width: 220px;
+}
+.thank-modal__whatsapp {
+    color: var(--accent-dark, #3b4dba);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: color 0.2s;
+}
+.thank-modal__whatsapp:hover {
+    color: var(--warm-deep, #ff9a5a);
+    text-decoration: underline;
+}
+.thank-modal__autoclose {
+    font-size: 0.76rem;
+    color: var(--text-muted, #6b7280);
+    margin: 0;
+    opacity: 0.8;
+}
+
+@keyframes thankModalIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes thankFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes thankPanelIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.94); }
+    to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@keyframes thankPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.08); }
+}
+@keyframes thankCircle { to { stroke-dashoffset: 0; } }
+@keyframes thankTick   { to { stroke-dashoffset: 0; } }
+
+@media (max-width: 480px) {
+    .thank-modal__panel { padding: 36px 22px 24px; border-radius: 22px; }
+    .thank-modal__actions .btn { min-width: unset; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .thank-modal[aria-hidden="false"],
+    .thank-modal__backdrop,
+    .thank-modal__panel,
+    .thank-modal__shape,
+    .thank-check__circle,
+    .thank-check__tick {
+        animation: none !important;
+    }
+    .thank-check__circle,
+    .thank-check__tick {
+        stroke-dashoffset: 0 !important;
+    }
+}
 
 /* =========================================================
    Accessibility — focus, motion, screen-reader, contrast

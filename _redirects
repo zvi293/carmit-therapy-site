@@ -14,15 +14,18 @@ https://www.carmit-therapy.com/*       https://carmit-therapy.com/:splat   301!
 # They sit next to the pages, so Netlify publishes them: every one of
 # these was reachable (and indexable) at its plain URL.
 #
-# NOTE: Netlify only supports `*` as a trailing splat — a pattern like
-# `/*.md` silently never matches, which is why an earlier attempt at a
-# single wildcard rule did nothing. Each file is listed explicitly.
+# TWO Netlify gotchas are handled here:
+#   1. `*` is only supported as a TRAILING splat, so `/*.md` never matches.
+#      Each file is listed explicitly.
+#   2. A redirect loses to a real file at the same path unless it is forced
+#      with `!`. These are real files, so without the `!` the rules were
+#      silently skipped and the documents stayed reachable.
 # ---------------------------------------------------------------
-/AGENT_CONTEXT.md              /404.html   404
-/SEO_AUDIT.md                  /404.html   404
-/SEO_FINAL_VALIDATION.md       /404.html   404
-/SEARCH_CONSOLE_CHECKLIST.md   /404.html   404
-/.claude/*                     /404.html   404
+/AGENT_CONTEXT.md                     /404.html                                  404!
+/SEO_AUDIT.md                         /404.html                                  404!
+/SEO_FINAL_VALIDATION.md              /404.html                                  404!
+/SEARCH_CONSOLE_CHECKLIST.md          /404.html                                  404!
+/.claude/*                            /404.html                                  404!
 
 # ---------------------------------------------------------------
 # One canonical address per page.
@@ -34,13 +37,16 @@ https://www.carmit-therapy.com/*       https://carmit-therapy.com/:splat   301!
 # — including anything Google already crawled — back onto the
 # canonical address. They double as friendly short links to hand out
 # over the phone or on WhatsApp.
+#
+# The `!` is required: Netlify resolves /privacy to privacy.html on its
+# own, and an unforced redirect always loses to a file it can resolve.
 # ---------------------------------------------------------------
-/accessibility                        /accessibility.html                        301
-/privacy                              /privacy.html                              301
-/terms                                /terms.html                                301
-/therapy-children-petah-tikva         /therapy-children-petah-tikva.html         301
-/psychotherapist-children-petah-tikva /psychotherapist-children-petah-tikva.html 301
-/cbt-children-petah-tikva             /cbt-children-petah-tikva.html             301
-/נגישות                               /accessibility.html                        301
+/accessibility                        /accessibility.html                        301!
+/privacy                              /privacy.html                              301!
+/terms                                /terms.html                                301!
+/therapy-children-petah-tikva         /therapy-children-petah-tikva.html         301!
+/psychotherapist-children-petah-tikva /psychotherapist-children-petah-tikva.html 301!
+/cbt-children-petah-tikva             /cbt-children-petah-tikva.html             301!
+/נגישות                               /accessibility.html                        301!
 # (/index.html is folded onto / by Netlify itself — adding a rule for it
 #  here risks a loop, so it is deliberately left out.)

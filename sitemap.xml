@@ -1,44 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://carmit-therapy.com/</loc>
-    <lastmod>2026-05-17</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://carmit-therapy.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://carmit-therapy.com/"/>
     <image:image>
       <image:loc>https://carmit-therapy.com/image/og-share.png</image:loc>
       <image:title>כרמית משה – פסיכותרפיסטית לילדים בפתח תקווה</image:title>
     </image:image>
+    <image:image>
+      <image:loc>https://carmit-therapy.com/image/carmit-portrait.webp</image:loc>
+      <image:title>כרמית משה – פסיכותרפיסטית הוליסטית ומטפלת רגשית לילדים ונוער</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://carmit-therapy.com/image/clinic-salon.webp</image:loc>
+      <image:title>הסלון בקליניקה — פינת היכרות, שיחה ועיבוד</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://carmit-therapy.com/image/child-play.webp</image:loc>
+      <image:title>פינת המשחק בקליניקה</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://carmit-therapy.com/image/creative-corner.webp</image:loc>
+      <image:title>פינת היצירה בקליניקה</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://carmit-therapy.com/therapy-children-petah-tikva.html</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://carmit-therapy.com/therapy-children-petah-tikva.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://carmit-therapy.com/therapy-children-petah-tikva.html"/>
   </url>
   <url>
     <loc>https://carmit-therapy.com/psychotherapist-children-petah-tikva.html</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://carmit-therapy.com/psychotherapist-children-petah-tikva.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://carmit-therapy.com/psychotherapist-children-petah-tikva.html"/>
   </url>
   <url>
     <loc>https://carmit-therapy.com/cbt-children-petah-tikva.html</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he-IL" href="https://carmit-therapy.com/cbt-children-petah-tikva.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://carmit-therapy.com/cbt-children-petah-tikva.html"/>
+  </url>
+  <url>
+    <loc>https://carmit-therapy.com/accessibility.html</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://carmit-therapy.com/privacy.html</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://carmit-therapy.com/terms.html</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 </urlset>

@@ -11,15 +11,23 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <!-- SEO -->
     <meta name="description" content="פסיכותרפיסטית לילדים ונוער בפתח-תקווה. טיפול בחרדות, קשיים חברתיים וויסות רגשי. שיחת היכרות ללא התחייבות · 052-950-3313.">
-    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     <meta name="theme-color" content="#2D3F35">
+    <meta name="author" content="כרמית משה">
     <link rel="canonical" href="https://carmit-therapy.com/">
     <link rel="alternate" hreflang="he-IL" href="https://carmit-therapy.com/">
     <link rel="alternate" hreflang="x-default" href="https://carmit-therapy.com/">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <!-- Local / geo signals -->
+    <meta name="geo.region" content="IL-M">
+    <meta name="geo.placename" content="פתח תקווה">
+    <meta name="geo.position" content="32.0907;34.8975">
+    <meta name="ICBM" content="32.0907, 34.8975">
 
     <!-- Open Graph -->
     <meta property="og:locale" content="he_IL">
@@ -29,203 +37,339 @@
     <meta property="og:url" content="https://carmit-therapy.com/">
     <meta property="og:site_name" content="כרמית משה – טיפול רגשי לילדים ונוער">
     <meta property="og:image" content="https://carmit-therapy.com/image/og-share.png">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="כרמית משה – פסיכותרפיסטית הוליסטית לילדים ונוער בפתח תקווה">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="טיפול רגשי לילדים ונוער | כרמית משה">
     <meta name="twitter:description" content="מרחב רגשי בטוח לילדים ונוער – פסיכודרמה, CBT ומיינדפולנס.">
     <meta name="twitter:image" content="https://carmit-therapy.com/image/og-share.png">
+    <meta name="twitter:image:alt" content="כרמית משה – פסיכותרפיסטית הוליסטית לילדים ונוער בפתח תקווה">
 
-    <!-- Premium Hebrew typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Typography is self-hosted (see the @font-face block at the top of style.css):
+         no third-party DNS/TLS handshake, no visitor IP leaving for Google. -->
+    <link rel="preload" href="/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/frank-ruhl-libre-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css?v=20260728">
 
-    <!-- Structured Data -->
+    <!-- LCP image lives in a CSS background; tell the browser about it up front. -->
+    <link rel="preload" as="image" href="/image/child-play.webp" type="image/webp" fetchpriority="high">
+
+    <script src="/js/a11y-init.js?v=20260728"></script>
+
+    <!-- ============================================================
+         Structured data — one connected @graph instead of six separate
+         islands, so Google (and answer engines such as ChatGPT, Gemini,
+         Perplexity and Claude) resolve the clinic, the therapist, the
+         site and the page as a single entity rather than guessing.
+         ============================================================ -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "@id": "https://carmit-therapy.com/#business",
-      "name": "כרמית משה – טיפול רגשי לילדים ונוער",
-      "description": "קליניקה לטיפול רגשי לילדים ונוער בפתח-תקווה. פסיכותרפיה הוליסטית, פסיכודרמה, CBT ומיינדפולנס.",
-      "url": "https://carmit-therapy.com/",
-      "telephone": "+972-52-950-3313",
-      "email": "carmit.therapy291@gmail.com",
-      "priceRange": "₪₪",
-      "availableLanguage": [{"@type": "Language", "name": "Hebrew"}, {"@type": "Language", "name": "English"}],
-      "founder": {
-        "@type": "Person",
-        "name": "כרמית משה",
-        "jobTitle": "פסיכותרפיסטית הוליסטית"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "32.0907",
-        "longitude": "34.8975"
-      },
-      "serviceArea": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": "32.0907",
-          "longitude": "34.8975"
-        },
-        "geoRadius": "15000"
-      },
-      "areaServed": [
-        {"@type": "City", "name": "פתח-תקווה"},
-        {"@type": "City", "name": "בני ברק"},
-        {"@type": "City", "name": "ראש העין"},
-        {"@type": "City", "name": "יהוד"},
-        {"@type": "City", "name": "גבעת שמואל"},
-        {"@type": "City", "name": "קריית אונו"}
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "רחוב ויסוקר 1",
-        "addressLocality": "פתח-תקווה",
-        "addressRegion": "מרכז",
-        "postalCode": "4934448",
-        "addressCountry": "IL"
-      },
-      "openingHoursSpecification": [
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"], "opens": "09:00", "closes": "19:00" }
-      ],
-      "sameAs": [
-        "https://wa.me/972529503313"
-      ]
-    }
-    </script>
-
-    <!-- Person Schema - Carmit Moshe -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "@id": "https://carmit-therapy.com/#carmit",
-      "name": "כרמית משה",
-      "givenName": "כרמית",
-      "familyName": "משה",
-      "jobTitle": "פסיכותרפיסטית הוליסטית · מטפלת רגשית בילדים ונוער",
-      "description": "פסיכותרפיסטית הוליסטית, מטפלת רגשית בילדים, נוער ומבוגרים. משלבת פסיכותרפיה הוליסטית, פסיכודרמה, CBT ומיינדפולנס. בעלת קליניקה פרטית בפתח-תקווה.",
-      "image": "https://carmit-therapy.com/image/og-share.png",
-      "url": "https://carmit-therapy.com/",
-      "telephone": "+972-52-950-3313",
-      "email": "carmit.therapy291@gmail.com",
-      "worksFor": {"@id": "https://carmit-therapy.com/#business"},
-      "knowsAbout": [
-        "פסיכותרפיה הוליסטית",
-        "פסיכודרמה לילדים",
-        "טיפול קוגניטיבי-התנהגותי (CBT) לילדים",
-        "מיינדפולנס וקשיבות לילדים",
-        "טיפול בחרדה אצל ילדים",
-        "ויסות רגשי",
-        "קשיים חברתיים",
-        "ביטחון עצמי וערך עצמי",
-        "ליווי הורים"
-      ],
-      "knowsLanguage": ["he", "en"],
-      "areaServed": [
-        {"@type": "City", "name": "פתח-תקווה"},
-        {"@type": "City", "name": "בני ברק"},
-        {"@type": "City", "name": "ראש העין"},
-        {"@type": "City", "name": "יהוד"},
-        {"@type": "City", "name": "גבעת שמואל"},
-        {"@type": "City", "name": "קריית אונו"}
-      ]
-    }
-    </script>
-
-    <!-- BreadcrumbList -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "דף הבית", "item": "https://carmit-therapy.com/"}
-      ]
-    }
-    </script>
-
-    <!-- WebSite Schema with SearchAction -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://carmit-therapy.com/#website",
-      "url": "https://carmit-therapy.com/",
-      "name": "כרמית משה – טיפול רגשי לילדים ונוער",
-      "inLanguage": "he-IL",
-      "publisher": {"@id": "https://carmit-therapy.com/#business"}
-    }
-    </script>
-
-    <!-- FAQPage - matches the visible FAQ section -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
+      "@graph": [
         {
-          "@type": "Question",
-          "name": "כמה זמן נמשך תהליך טיפולי טיפוסי אצל כרמית משה?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "רוב התהליכים מתחילים בסדרה של 10–12 מפגשים שבועיים, ולאחריה עוצרים ומסתכלים יחד אם נכון להמשיך. תהליכים עמוקים יותר יכולים להימשך שנה ויותר — בקצב של הילד ושל המשפחה."
+          "@type": ["ProfessionalService", "LocalBusiness"],
+          "@id": "https://carmit-therapy.com/#business",
+          "name": "כרמית משה – טיפול רגשי לילדים ונוער",
+          "alternateName": "כרמית משה – טיפול רגשי לילדים פתח תקווה",
+          "legalName": "כרמית משה",
+          "description": "קליניקה לטיפול רגשי לילדים, נוער ומבוגרים בפתח-תקווה. פסיכותרפיה הוליסטית, פסיכודרמה, CBT לילדים ומיינדפולנס, בהתאמה אישית לכל ילד ולכל משפחה.",
+          "slogan": "אין ילד בעייתי — יש ילד שמנסה להגיד משהו",
+          "url": "https://carmit-therapy.com/",
+          "mainEntityOfPage": {"@id": "https://carmit-therapy.com/#webpage"},
+          "telephone": "+972-52-950-3313",
+          "email": "carmit.therapy291@gmail.com",
+          "priceRange": "₪₪",
+          "currenciesAccepted": "ILS",
+          "paymentAccepted": "מזומן, כרטיס אשראי, העברה בנקאית",
+          "image": "https://carmit-therapy.com/image/og-share.png",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://carmit-therapy.com/image/carmit-mark.png",
+            "width": 104,
+            "height": 186
+          },
+          "isAccessibleForFree": false,
+          "availableLanguage": [
+            {"@type": "Language", "name": "Hebrew", "alternateName": "he"},
+            {"@type": "Language", "name": "English", "alternateName": "en"}
+          ],
+          "founder": {"@id": "https://carmit-therapy.com/#carmit"},
+          "employee": {"@id": "https://carmit-therapy.com/#carmit"},
+          "knowsLanguage": ["he", "en"],
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 32.0907,
+            "longitude": 34.8975
+          },
+          "hasMap": "https://maps.google.com/?cid=10782627092382521567",
+          "serviceArea": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+              "@type": "GeoCoordinates",
+              "latitude": 32.0907,
+              "longitude": 34.8975
+            },
+            "geoRadius": "15000"
+          },
+          "areaServed": [
+            {"@type": "City", "name": "פתח-תקווה"},
+            {"@type": "City", "name": "בני ברק"},
+            {"@type": "City", "name": "ראש העין"},
+            {"@type": "City", "name": "יהוד"},
+            {"@type": "City", "name": "גבעת שמואל"},
+            {"@type": "City", "name": "קריית אונו"}
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "רחוב ויסוקר 1",
+            "addressLocality": "פתח-תקווה",
+            "addressRegion": "מרכז",
+            "postalCode": "4900846",
+            "addressCountry": "IL"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+              "opens": "09:00",
+              "closes": "19:00"
+            }
+          ],
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer service",
+              "telephone": "+972-52-950-3313",
+              "email": "carmit.therapy291@gmail.com",
+              "availableLanguage": ["he", "en"],
+              "areaServed": "IL"
+            },
+            {
+              "@type": "ContactPoint",
+              "contactType": "accessibility support",
+              "name": "רכזת נגישות",
+              "telephone": "+972-52-950-3313",
+              "email": "carmit.therapy291@gmail.com",
+              "availableLanguage": ["he"],
+              "areaServed": "IL"
+            }
+          ],
+          "sameAs": [
+            "https://maps.google.com/?cid=10782627092382521567",
+            "https://www.google.com/search?kgmid=/g/11n54ytldr",
+            "https://wa.me/972529503313"
+          ],
+          "makesOffer": {
+            "@type": "Offer",
+            "name": "שיחת היכרות ראשונית",
+            "description": "שיחת טלפון של 20 דקות להיכרות ולבדיקת התאמה, ללא תשלום וללא התחייבות.",
+            "price": "0",
+            "priceCurrency": "ILS",
+            "availability": "https://schema.org/InStock"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "שירותי הקליניקה",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "פסיכותרפיה הוליסטית לילדים",
+                  "description": "ראייה רחבה של הילד — גוף, נפש, משפחה וסביבה — במקום התמקדות בתסמין בודד.",
+                  "serviceType": "פסיכותרפיה הוליסטית",
+                  "provider": {"@id": "https://carmit-therapy.com/#business"},
+                  "areaServed": {"@type": "City", "name": "פתח-תקווה"}
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "פסיכודרמה לילדים ולנוער",
+                  "description": "ביטוי רגשי דרך משחק תפקידים, דמויות ותנועה, לילדים שמתקשים לדבר על מה שכואב.",
+                  "serviceType": "פסיכודרמה",
+                  "provider": {"@id": "https://carmit-therapy.com/#business"},
+                  "areaServed": {"@type": "City", "name": "פתח-תקווה"}
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "CBT לילדים — טיפול קוגניטיבי-התנהגותי",
+                  "description": "כלים פרקטיים להתמודדות עם פחדים, חרדה ומחשבות שליליות, מותאמים לגיל הילד.",
+                  "serviceType": "טיפול קוגניטיבי-התנהגותי",
+                  "provider": {"@id": "https://carmit-therapy.com/#business"},
+                  "areaServed": {"@type": "City", "name": "פתח-תקווה"}
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "מיינדפולנס וקשיבות לילדים",
+                  "description": "תרגילי נשימה, דמיון מודרך ותשומת לב לרגע הנוכחי לבניית ויסות רגשי.",
+                  "serviceType": "מיינדפולנס",
+                  "provider": {"@id": "https://carmit-therapy.com/#business"},
+                  "areaServed": {"@type": "City", "name": "פתח-תקווה"}
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "הדרכת הורים וליווי משפחתי",
+                  "description": "מפגשי הורים תקופתיים, כלים פרקטיים לבית וחשיבה משותפת לאורך התהליך.",
+                  "serviceType": "הדרכת הורים",
+                  "provider": {"@id": "https://carmit-therapy.com/#business"},
+                  "areaServed": {"@type": "City", "name": "פתח-תקווה"}
+                }
+              }
+            ]
           }
         },
         {
-          "@type": "Question",
-          "name": "האם ההורים נוכחים בטיפול עצמו?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "המפגשים עם הילד הם בדרך כלל ללא ההורים, כדי לאפשר לילד מרחב משלו. אך ההורים תמיד חלק מהתהליך: מפגשי הורים נפרדים, עדכונים שוטפים וטלפונים פתוחים בין מפגש למפגש."
+          "@type": "Person",
+          "@id": "https://carmit-therapy.com/#carmit",
+          "name": "כרמית משה",
+          "givenName": "כרמית",
+          "familyName": "משה",
+          "jobTitle": "פסיכותרפיסטית הוליסטית · מטפלת רגשית בילדים ונוער",
+          "description": "פסיכותרפיסטית הוליסטית, מטפלת רגשית בילדים, נוער ומבוגרים. משלבת פסיכותרפיה הוליסטית, פסיכודרמה, CBT ומיינדפולנס. בעלת קליניקה פרטית בפתח-תקווה.",
+          "image": "https://carmit-therapy.com/image/carmit-portrait.webp",
+          "url": "https://carmit-therapy.com/",
+          "telephone": "+972-52-950-3313",
+          "email": "carmit.therapy291@gmail.com",
+          "worksFor": {"@id": "https://carmit-therapy.com/#business"},
+          "workLocation": {"@id": "https://carmit-therapy.com/#business"},
+          "knowsAbout": [
+            "פסיכותרפיה הוליסטית",
+            "פסיכודרמה לילדים",
+            "טיפול קוגניטיבי-התנהגותי (CBT) לילדים",
+            "מיינדפולנס וקשיבות לילדים",
+            "טיפול בחרדה אצל ילדים",
+            "חרדת פרידה וחרדת בית ספר",
+            "ויסות רגשי",
+            "קשיים חברתיים",
+            "ביטחון עצמי וערך עצמי",
+            "ליווי הורים"
+          ],
+          "knowsLanguage": ["he", "en"],
+          "areaServed": [
+            {"@type": "City", "name": "פתח-תקווה"},
+            {"@type": "City", "name": "בני ברק"},
+            {"@type": "City", "name": "ראש העין"},
+            {"@type": "City", "name": "יהוד"},
+            {"@type": "City", "name": "גבעת שמואל"},
+            {"@type": "City", "name": "קריית אונו"}
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://carmit-therapy.com/#website",
+          "url": "https://carmit-therapy.com/",
+          "name": "כרמית משה – טיפול רגשי לילדים ונוער",
+          "description": "אתר הקליניקה של כרמית משה, פסיכותרפיסטית הוליסטית לילדים ונוער בפתח-תקווה.",
+          "inLanguage": "he-IL",
+          "publisher": {"@id": "https://carmit-therapy.com/#business"}
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://carmit-therapy.com/#webpage",
+          "url": "https://carmit-therapy.com/",
+          "name": "טיפול רגשי לילדים בפתח תקווה | כרמית משה",
+          "description": "פסיכותרפיסטית לילדים ונוער בפתח-תקווה. טיפול בחרדות, קשיים חברתיים וויסות רגשי. שיחת היכרות ללא התחייבות.",
+          "inLanguage": "he-IL",
+          "isPartOf": {"@id": "https://carmit-therapy.com/#website"},
+          "about": {"@id": "https://carmit-therapy.com/#business"},
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://carmit-therapy.com/image/og-share.png",
+            "width": 1200,
+            "height": 630
+          },
+          "dateModified": "2026-07-28",
+          "breadcrumb": {"@id": "https://carmit-therapy.com/#breadcrumb"},
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".hero-subtitle", ".hero-lead", ".manifesto-text"]
           }
         },
         {
-          "@type": "Question",
-          "name": "מאיזה גיל מתאים להתחיל טיפול רגשי?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "כרמית עובדת בעיקר עם ילדים מגיל 6 ומעלה, כשהילד מסוגל לתקשורת מילולית-משחקית. לילדים צעירים יותר היא מציעה הדרכת הורים שמעצימה את ההורים עצמם להיות 'המטפלים' הטובים ביותר עבור הילד."
-          }
+          "@type": "BreadcrumbList",
+          "@id": "https://carmit-therapy.com/#breadcrumb",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "דף הבית", "item": "https://carmit-therapy.com/"}
+          ]
         },
         {
-          "@type": "Question",
-          "name": "האם יש אפשרות למפגשים אונליין?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "עם בני נוער וילדים בוגרים אפשר לשלב מפגשים אונליין במקרים מסוימים. עם ילדים צעירים הנוכחות הפיזית קריטית — המשחק, היצירה והתנועה הם חלק בלתי-נפרד מהטיפול."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "האם הקליניקה נגישה לתושבי ראש העין, בני ברק ויהוד?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "כן. הקליניקה ממוקמת בלב פתח-תקווה, ברחוב ויסוקר 1, ונגישה ברכב פרטי ובתחבורה ציבורית לתושבי ראש העין, בני ברק, יהוד, גבעת שמואל, קריית אונו והסביבה."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "מה לגבי דיסקרטיות וסודיות בקליניקה?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "סודיות מוחלטת היא הבסיס. כל מה שמדובר בקליניקה נשאר בקליניקה. החריג היחיד הוא מצב של סכנה ממשית, ואז יש חובת דיווח מקצועית. כל פרט אחר עוטף סודיות מלאה."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "איך מדברים עם הילד על להגיע לטיפול?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "בכנות, בלי פחד. אפשר לומר 'אנחנו הולכים לפגוש מישהי נחמדה שעוזרת לילדים להבין את עצמם'. לא צריך להפוך את זה ל'בעיה'. בשיחת ההיכרות נסכם יחד את הדרך הנכונה ביותר עבור הילד הספציפי שלכם."
-          }
+          "@type": "FAQPage",
+          "@id": "https://carmit-therapy.com/#faq",
+          "isPartOf": {"@id": "https://carmit-therapy.com/#webpage"},
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "כמה זמן נמשך תהליך טיפולי טיפוסי אצל כרמית משה?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "רוב התהליכים מתחילים בסדרה של 10–12 מפגשים שבועיים, ולאחריה עוצרים ומסתכלים יחד אם נכון להמשיך. תהליכים עמוקים יותר יכולים להימשך שנה ויותר — בקצב של הילד ושל המשפחה."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "האם ההורים נוכחים בטיפול עצמו?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "המפגשים עם הילד הם בדרך כלל ללא ההורים, כדי לאפשר לילד מרחב משלו. אך ההורים תמיד חלק מהתהליך: מפגשי הורים נפרדים, עדכונים שוטפים וטלפונים פתוחים בין מפגש למפגש."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "מאיזה גיל מתאים להתחיל טיפול רגשי?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "כרמית עובדת בעיקר עם ילדים מגיל 6 ומעלה, כשהילד מסוגל לתקשורת מילולית-משחקית. לילדים צעירים יותר היא מציעה הדרכת הורים שמעצימה את ההורים עצמם להיות 'המטפלים' הטובים ביותר עבור הילד."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "האם יש אפשרות למפגשים אונליין?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "עם בני נוער וילדים בוגרים אפשר לשלב מפגשים אונליין במקרים מסוימים. עם ילדים צעירים הנוכחות הפיזית קריטית — המשחק, היצירה והתנועה הם חלק בלתי-נפרד מהטיפול."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "האם הקליניקה נגישה לתושבי ראש העין, בני ברק ויהוד?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "כן. הקליניקה ממוקמת בלב פתח-תקווה, ברחוב ויסוקר 1, ונגישה ברכב פרטי ובתחבורה ציבורית לתושבי ראש העין, בני ברק, יהוד, גבעת שמואל, קריית אונו והסביבה."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "מה לגבי דיסקרטיות וסודיות בקליניקה?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "סודיות מוחלטת היא הבסיס. כל מה שמדובר בקליניקה נשאר בקליניקה. החריג היחיד הוא מצב של סכנה ממשית, ואז יש חובת דיווח מקצועית. כל פרט אחר עוטף סודיות מלאה."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "איך מדברים עם הילד על להגיע לטיפול?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "בכנות, בלי פחד. אפשר לומר 'אנחנו הולכים לפגוש מישהי נחמדה שעוזרת לילדים להבין את עצמם'. לא צריך להפוך את זה ל'בעיה'. בשיחת ההיכרות נסכם יחד את הדרך הנכונה ביותר עבור הילד הספציפי שלכם."
+              }
+            }
+          ]
         }
       ]
     }
@@ -243,7 +387,10 @@
     <div class="container header-inner">
         <a class="logo logo-link" href="#home" aria-label="חזרה לראש הדף">
             <div class="logo-mark">
-                <img src="./image/עיצוב.png" alt="לוגו קליניקת כרמית משה" width="46" height="46" decoding="async">
+                <picture>
+                    <source srcset="./image/carmit-mark.webp" type="image/webp">
+                    <img src="./image/carmit-mark.png" alt="" width="46" height="46" decoding="async" fetchpriority="high">
+                </picture>
             </div>
             <div class="logo-text">
                 <span class="logo-title">כרמית משה</span>
@@ -251,7 +398,7 @@
             </div>
         </a>
 
-        <nav class="main-nav" aria-label="תפריט ראשי">
+        <nav class="main-nav" id="mainNav" aria-label="תפריט ראשי">
             <ul>
                 <li><a href="#manifesto">הגישה</a></li>
                 <li><a href="#about">עליי</a></li>
@@ -266,14 +413,14 @@
 
         <div class="header-cta">
             <a href="#contact" class="btn primary">קביעת שיחה</a>
-            <button class="nav-toggle" aria-label="פתיחת תפריט" aria-expanded="false">
-                <span></span><span></span><span></span>
+            <button class="nav-toggle" type="button" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="mainNav">
+                <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
             </button>
         </div>
     </div>
 </header>
 
-<main id="home">
+<main id="home" tabindex="-1">
 
     <!-- HERO -->
     <section class="hero">
@@ -315,8 +462,8 @@
             </div>
 
             <div class="hero-visual reveal reveal-delay-1">
-                <div class="hero-photo-frame"></div>
-                <div class="hero-photo" role="img" aria-label="ילד משחק במרחב טיפולי"></div>
+                <div class="hero-photo-frame" aria-hidden="true"></div>
+                <div class="hero-photo" role="img" aria-label="שני ילדים יושבים יחד ליד שולחן, כותבים ומשחקים במרחב שקט ומואר"></div>
 
                 <div class="hero-stat-card">
                     <span class="num">15+</span>
@@ -407,7 +554,11 @@
         <div class="container about-grid">
             <div class="about-portrait reveal">
                 <div class="about-portrait-frame">
-                    <img src="./image/עיצוב.png" alt="כרמית משה – פסיכותרפיסטית הוליסטית ומטפלת רגשית לילדים ונוער" width="460" height="520" loading="lazy" decoding="async">
+                    <img src="./image/carmit-portrait.webp"
+                         srcset="./image/carmit-portrait.webp 460w, ./image/carmit-portrait-2x.webp 920w"
+                         sizes="(max-width: 1100px) 100vw, 460px"
+                         alt="כרמית משה – פסיכותרפיסטית הוליסטית ומטפלת רגשית לילדים ונוער, בפורטרט מחייך"
+                         width="460" height="822" loading="lazy" decoding="async">
                 </div>
                 <div class="about-portrait-badge">
                     <span class="num">+500</span>
@@ -705,7 +856,7 @@
 
             <div class="guides-grid">
                 <a href="therapy-children-petah-tikva.html" class="guide-card guide-card--one reveal">
-                    <div class="guide-card-img"></div>
+                    <div class="guide-card-img" aria-hidden="true"></div>
                     <div class="guide-card-body">
                         <span class="guide-card-tag">חרדה · ילדות</span>
                         <h3>איך לעזור לילד עם חרדה</h3>
@@ -715,7 +866,7 @@
                 </a>
 
                 <a href="cbt-children-petah-tikva.html" class="guide-card guide-card--two reveal reveal-delay-1">
-                    <div class="guide-card-img"></div>
+                    <div class="guide-card-img" aria-hidden="true"></div>
                     <div class="guide-card-body">
                         <span class="guide-card-tag">שיטה · CBT</span>
                         <h3>איך CBT עוזר לילדים</h3>
@@ -725,7 +876,7 @@
                 </a>
 
                 <a href="therapy-children-petah-tikva.html" class="guide-card guide-card--three reveal reveal-delay-2">
-                    <div class="guide-card-img"></div>
+                    <div class="guide-card-img" aria-hidden="true"></div>
                     <div class="guide-card-body">
                         <span class="guide-card-tag">סימני אזהרה</span>
                         <h3>מזהים קושי רגשי בילדים</h3>
@@ -735,7 +886,7 @@
                 </a>
 
                 <a href="psychotherapist-children-petah-tikva.html" class="guide-card guide-card--four reveal reveal-delay-3">
-                    <div class="guide-card-img"></div>
+                    <div class="guide-card-img" aria-hidden="true"></div>
                     <div class="guide-card-body">
                         <span class="guide-card-tag">מדריך הורים</span>
                         <h3>איך לבחור מטפלת רגשית</h3>
@@ -812,7 +963,7 @@
                     <h2>מתחילים בשיחה אחת.</h2>
                     <p>אם משהו ממה שקראתם כאן הדהד אצלכם — אפשר לפנות בדרך שנוחה לכם ביותר. אני חוזרת לכל פנייה אישית תוך 24 שעות, ובלי לחץ.</p>
 
-                    <div class="contact-channels" role="list">
+                    <div class="contact-channels">
                         <a class="contact-channel" href="tel:+972529503313" aria-label="התקשרו ל-052-950-3313">
                             <span class="contact-channel-icon">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1025,8 +1176,8 @@
 </div>
 
 <!-- WhatsApp float -->
-<a href="https://wa.me/972529503313?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9B%D7%A8%D7%9E%D7%99%D7%AA%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA.%20%D7%AA%D7%95%D7%93%D7%94%21" class="chat-btn" target="_blank" rel="noopener" aria-label="צ'אט בוואטסאפ">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/></svg>
+<a href="https://wa.me/972529503313?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9B%D7%A8%D7%9E%D7%99%D7%AA%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA.%20%D7%AA%D7%95%D7%93%D7%94%21" class="chat-btn" target="_blank" rel="noopener noreferrer" aria-label="שליחת הודעה לכרמית בוואטסאפ">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor" aria-hidden="true" focusable="false"><path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z"/></svg>
 </a>
 
 <!-- FOOTER -->
@@ -1036,7 +1187,10 @@
             <div class="footer-brand">
                 <div class="logo">
                     <div class="logo-mark">
-                        <img src="./image/עיצוב.png" alt="לוגו" width="46" height="46">
+                        <picture>
+                            <source srcset="./image/carmit-mark.webp" type="image/webp">
+                            <img src="./image/carmit-mark.png" alt="" width="46" height="46" loading="lazy" decoding="async">
+                        </picture>
                     </div>
                     <div class="logo-text">
                         <span class="logo-title">כרמית משה</span>
@@ -1047,7 +1201,7 @@
             </div>
 
             <div class="footer-col">
-                <h4>ניווט</h4>
+                <h3>ניווט</h3>
                 <ul>
                     <li><a href="#manifesto">המניפסט</a></li>
                     <li><a href="#about">אודות כרמית</a></li>
@@ -1059,18 +1213,19 @@
             </div>
 
             <div class="footer-col">
-                <h4>מאמרים</h4>
+                <h3>מאמרים</h3>
                 <ul>
                     <li><a href="therapy-children-petah-tikva.html">טיפול רגשי לילדים</a></li>
                     <li><a href="cbt-children-petah-tikva.html">CBT לילדים</a></li>
                     <li><a href="psychotherapist-children-petah-tikva.html">פסיכותרפיסטית לילדים</a></li>
                     <li><a href="privacy.html">מדיניות פרטיות</a></li>
                     <li><a href="terms.html">תנאי שימוש</a></li>
+                    <li><a href="accessibility.html">הצהרת נגישות</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
-                <h4>צרו קשר</h4>
+                <h3>צרו קשר</h3>
                 <ul>
                     <li><a href="tel:+972529503313">052-950-3313</a></li>
                     <li><a href="https://wa.me/972529503313?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9B%D7%A8%D7%9E%D7%99%D7%AA%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9A%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA.%20%D7%AA%D7%95%D7%93%D7%94%21" target="_blank" rel="noopener">וואטסאפ</a></li>
@@ -1091,313 +1246,14 @@
             <a href="psychotherapist-children-petah-tikva.html">פסיכותרפיסטית ילדים פתח תקווה</a>
             <a href="cbt-children-petah-tikva.html">CBT לילדים פתח תקווה</a>
             <a href="privacy.html">מדיניות פרטיות</a>
+            <a href="accessibility.html">הצהרת נגישות</a>
         </div>
     </div>
 </footer>
 
-<script>
-    // ---- Mobile nav toggle ----
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.main-nav');
-
-    if (navToggle && nav) {
-        navToggle.addEventListener('click', () => {
-            const isOpen = nav.classList.toggle('open');
-            navToggle.classList.toggle('open');
-            navToggle.setAttribute('aria-expanded', String(isOpen));
-        });
-
-        // Close mobile nav after clicking a link
-        document.querySelectorAll('.main-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (nav.classList.contains('open')) {
-                    nav.classList.remove('open');
-                    navToggle.classList.remove('open');
-                    navToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
-    }
-
-    // ---- Scroll reveal ----
-    const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
-
-    revealElements.forEach(el => observer.observe(el));
-
-    // ---- Header on scroll + reading progress ----
-    const header = document.getElementById('siteHeader');
-    const progress = document.querySelector('.read-progress');
-
-    function onScroll() {
-        const scrolled = window.scrollY;
-        if (header) header.classList.toggle('is-scrolled', scrolled > 20);
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = max > 0 ? (scrolled / max) * 100 : 0;
-        if (progress) progress.style.setProperty('--progress', pct + '%');
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    // ---- Smooth scroll on internal anchors ----
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            const id = a.getAttribute('href');
-            if (id && id.length > 1) {
-                const el = document.querySelector(id);
-                if (el) {
-                    e.preventDefault();
-                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
-    });
-</script>
-
-<script>
-  // ============================================================
-  // Contact form - hardened against bots, spam, and double-submit
-  //   1. Honeypot field ("website") - bots fill, humans don't
-  //   2. Time-trap - form must take >= 3 seconds (bots too fast)
-  //   3. Cooldown - 60s between submissions (localStorage)
-  //   4. Submit-button disable + in-flight lock
-  //   5. Client-side input sanitization + length caps
-  //   6. Phone regex validation
-  //   7. URL / spam pattern scrubbing
-  // ============================================================
-  const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbzx71JDNwocsOu3JePIEkUAB6ctUXPx49d-tqNUIfrY8QGL4KONNbXeum3BGdm5UEbM/exec";
-
-  const form = document.getElementById("contactForm");
-  const statusEl = document.getElementById("formStatus");
-  const submitBtn = document.getElementById("formSubmitBtn");
-  const timeField = document.getElementById("_t");
-
-  const MIN_FORM_DURATION_MS = 3000;
-  const COOLDOWN_MS = 60000;
-  const LS_KEY = "ct_last_submit";
-
-  // Sanitize: strip HTML tags + zero-width chars; trim; cap at 2000 chars
-  const sanitize = (s) => String(s || "")
-    .replace(/<[^>]*>/g, "")
-        .replace(/[\u0000-\u001f\u007f]/g, "")
-    .trim()
-    .slice(0, 2000);
-
-  const isLikelyBotMessage = (text) => (
-    /https?:\/\//i.test(text) ||
-    /\bbtc\b|crypto|seo services|backlinks|viagra|casino/i.test(text)
-  );
-
-  const setStatus = (msg, type) => {
-    if (!statusEl) return;
-    statusEl.textContent = msg;
-    statusEl.classList.remove("form-status--ok", "form-status--err");
-    if (type === "ok") statusEl.classList.add("form-status--ok");
-    if (type === "err") statusEl.classList.add("form-status--err");
-  };
-
-  if (timeField) timeField.value = String(Date.now());
-
-  let inFlight = false;
-
-  if (form && statusEl && submitBtn) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      if (inFlight) return;
-
-      // 1. Honeypot
-      const hpEl = form.querySelector('[name="website"]');
-      if (hpEl && hpEl.value.trim() !== "") {
-        setStatus("ההודעה נשלחה. תודה!", "ok");
-        form.reset();
-        return;
-      }
-
-      // 2. Time-trap
-      const loadedAt = parseInt((timeField && timeField.value) || "0", 10);
-      const elapsed = Date.now() - loadedAt;
-      if (loadedAt === 0 || elapsed < MIN_FORM_DURATION_MS) {
-        setStatus("נראה שהשליחה הייתה מהירה מדי. רעננו את הדף ונסו שוב.", "err");
-        return;
-      }
-
-      // 3. Cooldown
-      let lastSubmit = 0;
-      try { lastSubmit = parseInt(localStorage.getItem(LS_KEY) || "0", 10); } catch (_) {}
-      const sinceLast = Date.now() - lastSubmit;
-      if (sinceLast < COOLDOWN_MS) {
-        const wait = Math.ceil((COOLDOWN_MS - sinceLast) / 1000);
-        setStatus("שלחתם הודעה ממש לפני רגע - נסו שוב בעוד " + wait + " שניות.", "err");
-        return;
-      }
-
-      // 4. Native validation
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        setStatus("יש שדות חסרים או לא תקינים. עדכנו ושלחו שוב.", "err");
-        return;
-      }
-
-      // 5. Sanitize + validate values
-      const fd = new FormData(form);
-      const parentName = sanitize(fd.get("parentName")).slice(0, 60);
-      const childName  = sanitize(fd.get("childName")).slice(0, 60);
-      const phone      = sanitize(fd.get("phone")).slice(0, 20);
-      const email      = sanitize(fd.get("email")).slice(0, 120);
-      const message    = sanitize(fd.get("message"));
-
-      if (parentName.length < 2) {
-        setStatus("השם נראה קצר מדי. אנא הזינו שם מלא.", "err");
-        return;
-      }
-      if (!/^[0-9+\-\s()]{9,15}$/.test(phone)) {
-        setStatus("מספר הטלפון לא תקין. בדקו ונסו שוב.", "err");
-        return;
-      }
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        setStatus("כתובת האימייל לא תקינה. בדקו ונסו שוב.", "err");
-        return;
-      }
-      if (message.length < 5) {
-        setStatus("נשמח קצת יותר פרטים על מה שמעסיק אתכם.", "err");
-        return;
-      }
-      if (isLikelyBotMessage(message)) {
-        setStatus("ההודעה נשלחה. תודה!", "ok");
-        form.reset();
-        return;
-      }
-
-      // 6. Lock submit button
-      inFlight = true;
-      submitBtn.disabled = true;
-      submitBtn.setAttribute("aria-busy", "true");
-      const labelEl = submitBtn.querySelector(".btn-label");
-      const originalLabel = labelEl ? labelEl.textContent : null;
-      if (labelEl) labelEl.textContent = "שולחת...";
-      setStatus("שולחת...", null);
-
-      const payload = { parentName, childName, phone, email, message,
-                        userAgent: navigator.userAgent.slice(0, 200),
-                        page: location.pathname };
-
-      try {
-        await fetch(CONTACT_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload),
-          mode: "no-cors",
-          credentials: "omit"
-        });
-
-        try { localStorage.setItem(LS_KEY, String(Date.now())); } catch (_) {}
-
-        form.reset();
-        if (timeField) timeField.value = String(Date.now());
-        setStatus("", null);
-        if (typeof openThankModal === "function") openThankModal();
-      } catch (err) {
-        setStatus("השליחה נכשלה. נסו שוב או פנו ישירות בוואטסאפ.", "err");
-        console.error(err);
-      } finally {
-        inFlight = false;
-        submitBtn.disabled = false;
-        submitBtn.removeAttribute("aria-busy");
-        if (labelEl && originalLabel) labelEl.textContent = originalLabel;
-      }
-    });
-  }
-</script>
-
-<script>
-  // ============================================================
-  // Thank You Modal — opens after a successful form submission
-  // ============================================================
-  (function () {
-    const modal = document.getElementById("thankModal");
-    if (!modal) return;
-
-    const panel = modal.querySelector(".thank-modal__panel");
-    const countdownEl = document.getElementById("thankCountdown");
-    let countdownTimer = null;
-    let autoCloseTimer = null;
-    let previouslyFocused = null;
-
-    const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-
-    function trapFocus(e) {
-      if (e.key !== "Tab") return;
-      const focusables = panel.querySelectorAll(FOCUSABLE);
-      if (!focusables.length) return;
-      const first = focusables[0];
-      const last  = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-
-    function onKey(e) {
-      if (e.key === "Escape") closeThankModal();
-      else trapFocus(e);
-    }
-
-    window.openThankModal = function () {
-      previouslyFocused = document.activeElement;
-      modal.removeAttribute("hidden");
-      modal.style.removeProperty("display");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      document.addEventListener("keydown", onKey);
-
-      setTimeout(() => {
-        const firstBtn = panel.querySelector("button[data-modal-close]");
-        if (firstBtn) firstBtn.focus();
-      }, 50);
-
-      let secondsLeft = 8;
-      if (countdownEl) countdownEl.textContent = secondsLeft;
-      countdownTimer = setInterval(() => {
-        secondsLeft--;
-        if (countdownEl) countdownEl.textContent = secondsLeft;
-        if (secondsLeft <= 0) clearInterval(countdownTimer);
-      }, 1000);
-      autoCloseTimer = setTimeout(closeThankModal, 8000);
-    };
-
-    window.closeThankModal = function () {
-      modal.setAttribute("aria-hidden", "true");
-      modal.setAttribute("hidden", "");
-      modal.style.display = "none";
-      document.body.style.overflow = "";
-      document.removeEventListener("keydown", onKey);
-      if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
-      if (autoCloseTimer) { clearTimeout(autoCloseTimer); autoCloseTimer = null; }
-      if (previouslyFocused && previouslyFocused.focus) {
-        try { previouslyFocused.focus(); } catch (_) {}
-      }
-    };
-
-    modal.querySelectorAll("[data-modal-close]").forEach((el) => {
-      el.addEventListener("click", closeThankModal);
-    });
-
-    panel.addEventListener("mouseenter", () => {
-      if (autoCloseTimer) { clearTimeout(autoCloseTimer); autoCloseTimer = null; }
-      if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
-      if (countdownEl) countdownEl.parentElement.style.display = "none";
-    });
-  })();
-</script>
+<script src="/js/site.js?v=20260728" defer></script>
+<script src="/js/contact.js?v=20260728" defer></script>
+<script src="/js/a11y.js?v=20260728" defer></script>
 
 </body>
 </html>

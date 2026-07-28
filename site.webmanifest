@@ -1,0 +1,46 @@
+{
+  "name": "כרמית משה – טיפול רגשי לילדים ונוער",
+  "short_name": "כרמית משה",
+  "description": "קליניקה לטיפול רגשי לילדים, נוער ומבוגרים בפתח-תקווה. פסיכותרפיה הוליסטית, פסיכודרמה, CBT ומיינדפולנס.",
+  "lang": "he-IL",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f7f7fb",
+  "theme_color": "#2D3F35",
+  "categories": ["health", "medical", "education"],
+  "icons": [
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "יצירת קשר",
+      "short_name": "צרו קשר",
+      "description": "מעבר ישיר לטופס יצירת הקשר",
+      "url": "/#contact"
+    },
+    {
+      "name": "שאלות נפוצות",
+      "short_name": "שאלות",
+      "description": "תשובות לשאלות שעולות בשיחת ההיכרות",
+      "url": "/#faq"
+    }
+  ]
+}

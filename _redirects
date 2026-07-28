@@ -1,11 +1,29 @@
 # Netlify _redirects — Carmit Therapy Site
-# 301 redirect from old Netlify subdomain to the new custom domain
-# This consolidates SEO authority on https://carmit-therapy.com
 
-# Redirect old .netlify.app domain to custom domain (preserve path & query)
-https://carmit-therapy.netlify.app/* https://carmit-therapy.com/:splat 301!
+# ---------------------------------------------------------------
+# Domain canonicalisation — consolidate all SEO authority on
+# https://carmit-therapy.com (no www, HTTPS only).
+# ---------------------------------------------------------------
+https://carmit-therapy.netlify.app/*   https://carmit-therapy.com/:splat   301!
+http://carmit-therapy.com/*            https://carmit-therapy.com/:splat   301!
+http://www.carmit-therapy.com/*        https://carmit-therapy.com/:splat   301!
+https://www.carmit-therapy.com/*       https://carmit-therapy.com/:splat   301!
 
-# Ensure HTTPS-only on custom domain (Netlify handles this automatically, but explicit is safer)
-http://carmit-therapy.com/* https://carmit-therapy.com/:splat 301!
-http://www.carmit-therapy.com/* https://carmit-therapy.com/:splat 301!
-https://www.carmit-therapy.com/* https://carmit-therapy.com/:splat 301!
+# ---------------------------------------------------------------
+# Keep internal project files out of the public site.
+# These are committed alongside the pages, which means Netlify would
+# otherwise publish them: AGENT_CONTEXT.md and the SEO working notes
+# were all reachable (and indexable) at their plain URLs.
+# ---------------------------------------------------------------
+/*.md          /404.html   404
+/.claude/*     /404.html   404
+/*.bak         /404.html   404
+
+# ---------------------------------------------------------------
+# Friendly short URLs for the pages people are most likely to be
+# sent to by phone or WhatsApp.
+# ---------------------------------------------------------------
+/accessibility     /accessibility.html   301
+/privacy           /privacy.html         301
+/terms             /terms.html           301
+/נגישות            /accessibility.html   301

@@ -1,4 +1,46 @@
 /* =================================================================
+   SELF-HOSTED FONTS — Heebo + Frank Ruhl Libre
+   Variable-font woff2 files served from this origin instead of
+   fonts.googleapis.com. Faster (no third-party DNS/TLS handshake, no
+   render-blocking external stylesheet), privacy-friendly (no visitor
+   IP sent to Google) and lets the CSP drop Google's font domains.
+   One file per family+subset covers the whole weight range.
+   ================================================================= */
+
+@font-face {
+  font-family: 'Frank Ruhl Libre';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('/fonts/frank-ruhl-libre-hebrew.woff2') format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+@font-face {
+  font-family: 'Frank Ruhl Libre';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('/fonts/frank-ruhl-libre-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/heebo-hebrew.woff2') format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/heebo-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* =================================================================
    CARMIT MOSHE — WARM, EMBRACING, GENTLE
    Original soft blue + peach palette, refined and elevated
    ================================================================= */
@@ -596,7 +638,11 @@ p { margin: 0 0 1rem; }
     overflow: hidden;
     background:
         linear-gradient(180deg, rgba(94, 123, 255, 0) 60%, rgba(50, 65, 183, 0.15) 100%),
-        url("./image/child-game.jpg.jpeg") center/cover no-repeat;
+        url("./image/child-play.jpg") center/cover no-repeat;
+    background:
+        linear-gradient(180deg, rgba(94, 123, 255, 0) 60%, rgba(50, 65, 183, 0.15) 100%),
+        image-set(url("./image/child-play.webp") type("image/webp"),
+                  url("./image/child-play.jpg")  type("image/jpeg")) center/cover no-repeat;
     box-shadow: var(--shadow-lg);
     transform: rotate(-1.5deg);
     transition: transform 0.6s var(--ease-out);
@@ -1340,12 +1386,22 @@ p { margin: 0 0 1rem; }
 
 .space-img--main {
     grid-row: 1 / 3;
-    background-image: url("./image/salon.jpg.jpeg");
+    background-image: url("./image/clinic-salon.jpg");
+    background-image: image-set(url("./image/clinic-salon.webp") type("image/webp"),
+                                url("./image/clinic-salon.jpg")  type("image/jpeg"));
     min-height: 540px;
 }
 
-.space-img--one { background-image: url("./image/child-game.jpg.jpeg"); }
-.space-img--two { background-image: url("./image/olia-danilevich.jpg"); }
+.space-img--one {
+    background-image: url("./image/child-play.jpg");
+    background-image: image-set(url("./image/child-play.webp") type("image/webp"),
+                                url("./image/child-play.jpg")  type("image/jpeg"));
+}
+.space-img--two {
+    background-image: url("./image/creative-corner.jpg");
+    background-image: image-set(url("./image/creative-corner.webp") type("image/webp"),
+                                url("./image/creative-corner.jpg")  type("image/jpeg"));
+}
 
 .space-img-caption {
     position: absolute;
@@ -2196,7 +2252,7 @@ p { margin: 0 0 1rem; }
     font-size: 0.92rem;
 }
 
-.footer-col h4 {
+.footer-col h3, .footer-col h4 {
     color: var(--white);
     font-size: 1.05rem;
     margin-bottom: 16px;
@@ -2261,20 +2317,31 @@ p { margin: 0 0 1rem; }
    REVEAL ANIMATIONS
    ================================================================= */
 
-.reveal {
+/* Scroll-reveal.
+
+   IMPORTANT: the hidden state is gated behind `html.js-reveal`, which
+   js/a11y-init.js adds in <head> only when the browser can actually run the
+   animation (IntersectionObserver present, motion not suppressed). Without
+   that gate, any failure — a JS error, a blocked script, a browser that
+   throttles IntersectionObserver — would leave the whole page at opacity 0,
+   i.e. a blank white page for the visitor and for a crawler.
+
+   No `will-change` on purpose: ~45 elements carry .reveal, and promoting all
+   of them to their own compositor layer for the whole session caused memory
+   pressure and scroll jank on mid-range phones. */
+.js-reveal .reveal {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
-    will-change: opacity, transform;
 }
-.reveal.visible {
+.js-reveal .reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
+.js-reveal .reveal-delay-1 { transition-delay: 0.1s; }
+.js-reveal .reveal-delay-2 { transition-delay: 0.2s; }
+.js-reveal .reveal-delay-3 { transition-delay: 0.3s; }
 
 /* =================================================================
    RESPONSIVE
@@ -2707,4 +2774,685 @@ textarea:focus-visible,
         transition-duration: 0.001ms !important;
     }
     .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* =================================================================
+   ACCESSIBILITY WIDGET  (self-hosted, no third-party service)
+   Built to support Israeli accessibility regulations —
+   תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), תשע"ג-2013
+   and the Israeli standard ת"י 5568, which adopts WCAG 2.0 level AA.
+   All state lives on <html data-a11y-*> so it survives page navigation
+   via localStorage, and every rule is scoped to those attributes so the
+   default design is completely untouched while the widget is off.
+   ================================================================= */
+
+.a11y-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    left: auto;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    background: #1b3a8f;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9500;
+    box-shadow: 0 10px 28px rgba(27, 58, 143, 0.42);
+    transition: transform 0.25s var(--ease-out), background 0.25s var(--ease-out);
+    padding: 0;
+}
+.a11y-toggle:hover,
+.a11y-toggle:focus-visible { transform: scale(1.08); background: #142c6e; }
+.a11y-toggle svg { width: 30px; height: 30px; display: block; }
+
+.a11y-panel {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    left: auto;
+    width: min(330px, calc(100vw - 32px));
+    max-height: min(76vh, 620px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    background: #ffffff;
+    color: #1f2933;
+    border: 1px solid #cbd5e1;
+    border-radius: 18px;
+    box-shadow: 0 26px 60px rgba(15, 23, 42, 0.28);
+    z-index: 9600;
+    padding: 16px;
+    font-family: var(--font-main);
+    font-size: 15px;
+    line-height: 1.5;
+}
+.a11y-panel[hidden] { display: none; }
+
+.a11y-panel__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.a11y-panel__title { font-size: 1.02rem; font-weight: 700; margin: 0; color: #14225a; }
+.a11y-panel__close {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #334155;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    padding: 0;
+}
+.a11y-panel__close svg { width: 16px; height: 16px; }
+.a11y-panel__close:hover { background: #e2e8f0; }
+
+.a11y-group { margin-top: 14px; }
+.a11y-group__label {
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    margin: 0 0 8px;
+}
+.a11y-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.a11y-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 66px;
+    padding: 9px 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #1f2933;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+.a11y-btn svg { width: 21px; height: 21px; flex-shrink: 0; }
+.a11y-btn:hover { background: #eef2ff; border-color: #93a5f5; }
+.a11y-btn[aria-pressed="true"] {
+    background: #1b3a8f;
+    border-color: #1b3a8f;
+    color: #ffffff;
+}
+.a11y-btn--wide { grid-column: 1 / -1; flex-direction: row; min-height: 46px; gap: 10px; }
+
+.a11y-value {
+    display: inline-block;
+    min-width: 48px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.a11y-panel__foot {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.a11y-reset {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #b91c1c;
+    border-radius: 12px;
+    background: #fff5f5;
+    color: #b91c1c;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.a11y-reset:hover { background: #b91c1c; color: #ffffff; }
+.a11y-statement-link {
+    display: block;
+    text-align: center;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #1b3a8f;
+    text-decoration: underline;
+    padding: 6px;
+}
+.a11y-hint {
+    margin: 0;
+    font-size: 0.74rem;
+    color: #64748b;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .a11y-toggle { width: 50px; height: 50px; bottom: 20px; right: 16px; }
+    .a11y-panel { bottom: 80px; right: 12px; left: 12px; width: auto; max-height: 68vh; }
+}
+
+/* ---------- Applied modes ---------- */
+
+/* Text scaling (WCAG 1.4.4 Resize Text). The design is largely rem/clamp
+   based, so scaling the root plus explicit element sizes carries everything. */
+html[data-a11y-font] body { font-size: calc(16px * var(--a11y-font-scale, 1)); }
+html[data-a11y-font] body :where(h1, h2, h3, h4, h5, h6, p, li, a, span, button,
+    summary, label, input, textarea, small, strong, em, td, th, figcaption) {
+    font-size: calc(1em * var(--a11y-font-scale, 1));
+}
+/* The widget itself must never scale — it has to stay usable to switch back.
+   NOTE: `font-size: revert` does NOT work here. It reverts to the user-agent
+   origin, which means the element ends up inheriting the enlarged body size
+   instead of falling back to the author rule above. Explicit values only. */
+html[data-a11y-font] .a11y-panel { font-size: 15px; }
+html[data-a11y-font] .a11y-panel :where(h2, p, button, a, span, div, small) { font-size: inherit; }
+html[data-a11y-font] .a11y-panel__title { font-size: 1.02rem; }
+html[data-a11y-font] .a11y-btn { font-size: 0.8rem; }
+html[data-a11y-font] .a11y-group__label { font-size: 0.76rem; }
+html[data-a11y-font] .a11y-reset { font-size: 0.88rem; }
+html[data-a11y-font] .a11y-statement-link { font-size: 0.86rem; }
+html[data-a11y-font] .a11y-hint { font-size: 0.74rem; }
+
+/* Text spacing (WCAG 1.4.12) */
+html[data-a11y-spacing="on"] body :where(p, li, dd, dt, blockquote, summary, .quote, .section-intro, .hero-lead) {
+    line-height: 2.1 !important;
+    letter-spacing: 0.06em !important;
+    word-spacing: 0.14em !important;
+}
+
+/* Readable font — swaps the display serif for a plain sans everywhere */
+html[data-a11y-readable="on"] body,
+html[data-a11y-readable="on"] body * {
+    font-family: Arial, "Segoe UI", "Noto Sans Hebrew", sans-serif !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* Colour filters */
+html[data-a11y-filter="grayscale"] body { filter: grayscale(100%); }
+html[data-a11y-filter="saturate"] body { filter: saturate(2.4) contrast(1.08); }
+html[data-a11y-filter="invert"] body { filter: invert(100%) hue-rotate(180deg); }
+html[data-a11y-filter="invert"] body :where(img, iframe, video, .hero-photo, .space-img, .guide-card-img) {
+    filter: invert(100%) hue-rotate(180deg);
+}
+/* Keep the widget itself readable under every filter */
+html[data-a11y-filter] .a11y-panel,
+html[data-a11y-filter] .a11y-toggle,
+html[data-a11y-filter] .a11y-reading-guide { filter: none !important; }
+
+/* High contrast (WCAG 1.4.3 / 1.4.6).
+
+   Everything goes black-on-white-text with yellow links. Two details matter:
+   1. Only `background-color` is forced — using the `background` shorthand
+      would also wipe the photographs and leave big black rectangles.
+   2. `background-image: none` is applied to everything EXCEPT the elements
+      that hold an actual photograph, so decorative gradients disappear while
+      the real imagery survives (desaturated, so it never competes with text). */
+html[data-a11y-contrast="high"] body,
+html[data-a11y-contrast="high"] body * {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+html[data-a11y-contrast="high"] body *:not(.hero-photo):not(.space-img):not(.guide-card-img):not(.logo-mark) {
+    background-image: none !important;
+}
+html[data-a11y-contrast="high"] body :where(.hero-photo, .space-img, .guide-card-img, img) {
+    filter: grayscale(100%) contrast(1.3) brightness(0.85);
+}
+html[data-a11y-contrast="high"] body a,
+html[data-a11y-contrast="high"] body a * {
+    color: #ffe600 !important;
+    -webkit-text-fill-color: #ffe600 !important;
+    text-decoration: underline !important;
+}
+html[data-a11y-contrast="high"] body :where(button, input, textarea, select, .btn) {
+    border: 2px solid #ffffff !important;
+}
+/* The floating action buttons keep a solid, recognisable shape. */
+html[data-a11y-contrast="high"] .chat-btn,
+html[data-a11y-contrast="high"] .chat-btn * {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+/* The widget must stay legible in every mode — it is the way back out.
+   The `*` reset above also matches SVG children (path, circle, …), and the
+   icons draw with stroke="currentColor", so they have to be re-coloured
+   explicitly or they end up white-on-white and simply vanish. */
+html[data-a11y-contrast="high"] .a11y-panel,
+html[data-a11y-contrast="high"] .a11y-panel :where(div, p, h2, span, table, td, th, caption) {
+    background-color: #ffffff !important;
+    color: #14225a !important;
+    -webkit-text-fill-color: #14225a !important;
+    border-color: #14225a !important;
+}
+html[data-a11y-contrast="high"] .a11y-panel :where(svg, path, circle, rect, line, polyline, polygon, g) {
+    background-color: transparent !important;
+    color: #14225a !important;
+    -webkit-text-fill-color: #14225a !important;
+}
+html[data-a11y-contrast="high"] .a11y-btn,
+html[data-a11y-contrast="high"] .a11y-panel__close {
+    background-color: #ffffff !important;
+    color: #14225a !important;
+    -webkit-text-fill-color: #14225a !important;
+    border: 1px solid #14225a !important;
+}
+html[data-a11y-contrast="high"] .a11y-btn[aria-pressed="true"],
+html[data-a11y-contrast="high"] .a11y-btn[aria-pressed="true"] :where(span, svg, path, circle, rect, line, polyline, polygon, g),
+html[data-a11y-contrast="high"] .a11y-toggle,
+html[data-a11y-contrast="high"] .a11y-toggle :where(svg, path) {
+    background-color: #1b3a8f !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+html[data-a11y-contrast="high"] .a11y-btn[aria-pressed="true"] :where(svg, path, circle, rect, line, polyline, polygon, g),
+html[data-a11y-contrast="high"] .a11y-toggle :where(svg, path) { background-color: transparent !important; }
+
+/* Same treatment for the WhatsApp icon, which fills with currentColor. */
+html[data-a11y-contrast="high"] .chat-btn :where(svg, path) {
+    background-color: transparent !important;
+    color: #ffffff !important;
+}
+html[data-a11y-contrast="high"] .a11y-statement-link {
+    color: #1b3a8f !important;
+    -webkit-text-fill-color: #1b3a8f !important;
+}
+html[data-a11y-contrast="high"] .a11y-reset {
+    background: #ffffff !important;
+    color: #b91c1c !important;
+    -webkit-text-fill-color: #b91c1c !important;
+}
+
+/* Distinguish links without relying on colour alone (WCAG 1.4.1) */
+html[data-a11y-links="on"] body a {
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+    outline: 1px dashed currentColor !important;
+    outline-offset: 2px !important;
+}
+
+/* Make the heading structure visible at a glance */
+html[data-a11y-headings="on"] body :where(h1, h2, h3, h4) {
+    outline: 2px dashed #b45309 !important;
+    outline-offset: 3px !important;
+    background: #fff7ed !important;
+}
+
+/* Stop all motion (WCAG 2.2.2 Pause, Stop, Hide) */
+html[data-a11y-motion="off"] body *,
+html[data-a11y-motion="off"] body *::before,
+html[data-a11y-motion="off"] body *::after {
+    animation: none !important;
+    transition: none !important;
+}
+html[data-a11y-motion="off"] { scroll-behavior: auto !important; }
+html[data-a11y-motion="off"] .reveal { opacity: 1 !important; transform: none !important; }
+html[data-a11y-motion="off"] .marquee-track { transform: none !important; }
+
+/* Large cursor */
+html[data-a11y-cursor="big"] body,
+html[data-a11y-cursor="big"] body * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M6 2 L6 38 L15 30 L21 44 L28 41 L22 27 L34 27 Z' fill='%23000000' stroke='%23ffffff' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 6 2, auto !important;
+}
+html[data-a11y-cursor="big"] body :where(a, button, summary, [role="button"], input[type="submit"]) {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M6 2 L6 38 L15 30 L21 44 L28 41 L22 27 L34 27 Z' fill='%23ffe600' stroke='%23000000' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 6 2, pointer !important;
+}
+
+/* Reading guide — a horizontal ruler that follows the pointer */
+.a11y-reading-guide {
+    position: fixed;
+    left: 0; right: 0;
+    height: 14px;
+    background: rgba(27, 58, 143, 0.20);
+    border-top: 2px solid #1b3a8f;
+    border-bottom: 2px solid #1b3a8f;
+    pointer-events: none;
+    z-index: 9400;
+    transform: translateY(-50%);
+}
+
+/* Stronger, always-visible focus ring while keyboard mode is on */
+html[data-a11y-keyboard="on"] body :where(a, button, input, textarea, select, summary, [tabindex]):focus {
+    outline: 4px solid #b45309 !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 8px rgba(180, 83, 9, 0.22) !important;
+    border-radius: 6px;
+}
+
+@media print {
+    .a11y-toggle, .a11y-panel, .a11y-reading-guide, .chat-btn { display: none !important; }
+}
+
+/* =================================================================
+   LEGAL / STATEMENT PAGES  (privacy, terms, accessibility)
+   Previously duplicated as an inline <style> block inside each of the
+   three pages. Moved here so it is downloaded and cached once instead
+   of shipping ~4KB of identical, uncacheable CSS on every page view.
+   ================================================================= */
+
+.legal-page {
+    padding: clamp(40px, 5vw, 70px) 0 clamp(60px, 8vw, 100px);
+    background: var(--bg-main);
+    position: relative;
+    overflow: hidden;
+}
+.legal-page::before {
+    content: "";
+    position: absolute; top: 0; inset-inline-end: -6%;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, var(--bg-peach), transparent 65%);
+    opacity: 0.55; pointer-events: none;
+}
+.legal-page::after {
+    content: "";
+    position: absolute; bottom: 0; inset-inline-start: -6%;
+    width: 380px; height: 380px; border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-soft), transparent 65%);
+    opacity: 0.55; pointer-events: none;
+}
+/* terms.html keeps its original mirrored colour pairing */
+.legal-page--alt::before { background: radial-gradient(circle, var(--accent-soft), transparent 65%); }
+.legal-page--alt::after  { background: radial-gradient(circle, var(--bg-peach), transparent 65%); }
+
+.legal-hero {
+    max-width: 820px; margin: 0 auto;
+    text-align: center;
+    padding-bottom: clamp(30px, 4vw, 50px);
+    position: relative; z-index: 2;
+}
+.legal-hero .eyebrow { margin-bottom: 14px; }
+.legal-hero h1 {
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    color: var(--text-main); margin: 0 0 14px;
+    font-weight: 700;
+}
+.legal-hero .legal-meta { color: var(--text-muted); font-size: 0.94rem; }
+.legal-hero .legal-lead {
+    color: var(--text-soft);
+    font-size: 1.02rem;
+    line-height: 1.85;
+    max-width: 680px;
+    margin: 16px auto 0;
+}
+
+.legal-toc {
+    max-width: 820px; margin: 0 auto clamp(30px, 4vw, 50px);
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px 30px;
+    box-shadow: var(--shadow-xs);
+    position: relative; z-index: 2;
+}
+.legal-toc h2 {
+    font-size: 1.05rem; color: var(--accent-dark);
+    margin: 0 0 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+}
+.legal-toc h2::before { content: "\2726"; color: var(--warm-deep); }
+.legal-toc ol {
+    list-style: none; padding: 0; margin: 0;
+    columns: 2; column-gap: 30px;
+    counter-reset: section;
+}
+.legal-toc li { padding: 6px 0; counter-increment: section; break-inside: avoid; }
+.legal-toc li a {
+    color: var(--text-soft); font-size: 0.94rem;
+    transition: color 0.2s, padding 0.2s;
+    display: flex; align-items: baseline; gap: 8px;
+}
+.legal-toc li a::before {
+    content: counter(section, decimal) ".";
+    color: var(--warm-deep); font-weight: 700; min-width: 22px;
+}
+.legal-toc li a:hover { color: var(--accent-dark); padding-inline-start: 4px; }
+@media (max-width: 640px) { .legal-toc ol { columns: 1; } }
+
+.legal-body { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
+
+.legal-section {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(24px, 3vw, 36px);
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-xs);
+    position: relative;
+    scroll-margin-top: 100px;
+}
+.legal-section::before {
+    content: "";
+    position: absolute; top: 0; inset-inline-start: 0;
+    width: 60px; height: 4px;
+    background: linear-gradient(to right, var(--accent), var(--warm-deep));
+    border-radius: 0 0 999px 999px;
+}
+.legal-page--alt .legal-section::before {
+    background: linear-gradient(to right, var(--warm-deep), var(--accent));
+}
+.legal-section h2 {
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    color: var(--text-main); margin: 0 0 14px;
+    font-weight: 700;
+    display: flex; align-items: center; gap: 12px;
+}
+.legal-section h2 .num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: var(--white); font-size: 0.92rem;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 800; flex-shrink: 0;
+    box-shadow: 0 6px 14px rgba(94, 123, 255, 0.25);
+}
+.legal-page--alt .legal-section h2 .num {
+    background: linear-gradient(135deg, var(--warm-deep), var(--warm));
+    box-shadow: 0 6px 14px rgba(255, 154, 90, 0.25);
+}
+.legal-section h3 {
+    font-size: 1.05rem; color: var(--accent-dark);
+    margin: 18px 0 8px; font-weight: 700;
+}
+.legal-section p, .legal-section li {
+    color: var(--text-soft); line-height: 1.9; font-size: 0.98rem;
+}
+.legal-section ul, .legal-section ol { padding-inline-start: 20px; margin: 0 0 12px; }
+.legal-section li { margin-bottom: 6px; }
+.legal-section strong { color: var(--text-main); }
+.legal-section a { color: var(--accent-dark); font-weight: 600; text-decoration: underline; }
+.legal-section a:hover { text-decoration: none; }
+
+.legal-callout {
+    margin-top: 14px;
+    padding: 16px 20px;
+    background: var(--bg-soft);
+    border-radius: var(--radius-md);
+    border-inline-start: 4px solid var(--accent);
+}
+.legal-callout--warm { background: var(--bg-peach); border-inline-start-color: var(--warm-deep); }
+.legal-callout p { margin: 0; color: var(--text-main); font-size: 0.94rem; }
+.legal-callout p + p { margin-top: 8px; }
+
+.legal-table-wrap { overflow-x: auto; margin: 8px 0 14px; }
+.legal-table { width: 100%; border-collapse: collapse; font-size: 0.94rem; min-width: 420px; }
+.legal-table caption { text-align: start; color: var(--text-muted); font-size: 0.86rem; padding-bottom: 8px; }
+.legal-table th, .legal-table td {
+    text-align: start;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-soft);
+    vertical-align: top;
+}
+.legal-table th { color: var(--text-main); font-weight: 700; background: var(--bg-soft); }
+
+.legal-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 30px;
+    color: var(--accent-dark); font-weight: 600;
+    padding: 12px 22px;
+    background: var(--white);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--accent-soft);
+    transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out),
+                border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+.legal-back:hover {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* =================================================================
+   CONTRAST CORRECTIONS — WCAG 2.1 AA / ת"י 5568
+   -----------------------------------------------------------------
+   An audit of every text node against its real painted background
+   (gradients included) found 14 combinations below the required
+   ratio — 4.5:1 for body text, 3:1 for large text. The worst was the
+   main call-to-action: white on the light peach gradient measures
+   1.35:1, which is effectively unreadable for a low-vision visitor.
+
+   The palette itself is deliberately soft and light, and that is the
+   whole character of the site, so the fix keeps every surface colour
+   exactly as it was and changes the TEXT colour on top of it instead
+   of darkening the brand. Warm surfaces get deep brown text, tinted
+   blue surfaces get deep indigo, and the two brand colours that were
+   used as small text on light backgrounds get a deeper shade of the
+   same hue.
+
+   Everything lives in this one block: deleting it restores the
+   previous colours exactly, with no other side effects.
+   ================================================================= */
+
+:root {
+    --on-warm:   #40210a;  /* text on peach / orange surfaces      */
+    --on-tint:   #232d78;  /* text on light-blue surfaces          */
+    --on-mint:   #14532d;  /* text on the mint method circle       */
+    --on-rose:   #7f1d1d;  /* text on the rose method circle       */
+    --warm-text: #b45309;  /* warm hue when used AS text on light  */
+    --accent-btn:#4a5ee0;  /* accent deep enough to carry white    */
+
+    /* was #6b7280 — 4.0:1 on the tinted section backgrounds */
+    --text-muted: #5b6270;
+}
+
+/* --- Primary call-to-action: dark brown on the peach gradient ---- */
+.btn.warm { color: var(--on-warm); }
+.btn.warm:hover { color: var(--on-warm); }
+
+/* --- Solid accent buttons: white needs a deeper blue (was 3.7:1) - */
+.btn.primary { background: var(--accent-btn); }
+
+/* --- Ghost button on the CTA band: white on mid-blue was 3.7:1 --- */
+.cta-band-actions .btn.ghost {
+    background: rgba(0, 0, 0, 0.28);
+    border-color: rgba(255, 255, 255, 0.75);
+}
+
+/* --- Display accents: warm hue as text on light backgrounds ------ */
+.hero h1 em,
+.manifesto-text em,
+.seo-landing .seo-card--warm em,
+.seo-landing .seo-card--soft em { color: var(--warm-text); }
+
+.sign-card .sign-tag,
+.sign-card .sign-tag::before,
+.guide-card-tag { color: var(--warm-text); }
+
+/* --- Link-coloured text on white (was 3.7:1) --------------------- */
+.guide-card .guide-link { color: var(--accent-dark); }
+
+/* --- Numbered circles: white was unreadable on the light tints --- */
+.story-card .step-icon { color: var(--on-tint); }
+.story-card--featured .step-icon { color: var(--on-warm); }
+
+/* The method circles 01–04 keep their four colours; only the numeral
+   flips to a dark tone of the same family. 01 also moves from a solid
+   mid-blue to the same light tint as the others so a dark numeral has
+   enough contrast across the whole gradient. */
+.method-card .method-num {
+    background: linear-gradient(135deg, var(--accent-soft), var(--accent-light));
+    color: var(--on-tint);
+    box-shadow: 0 8px 18px rgba(94, 123, 255, 0.28);
+}
+.method-card:nth-child(2) .method-num { color: var(--on-warm); }
+.method-card:nth-child(3) .method-num { color: var(--on-mint); }
+.method-card:nth-child(4) .method-num { color: var(--on-rose); }
+
+/* --- Stat badges over gradients ---------------------------------- */
+.about-portrait-badge { color: var(--on-warm); }
+.hero-stat-card .label { color: rgba(255, 255, 255, 0.96); }
+
+/* --- Remaining four: white text over the mid-blue gradients ------
+   #5e7bff carries white at only 3.7:1. Both bands keep the same
+   blue identity but start from the deeper --accent-btn stop, which
+   clears 5.2:1 across the whole gradient. */
+.cta-band {
+    background: linear-gradient(135deg, var(--accent-btn) 0%, var(--accent-dark) 100%);
+}
+.cta-band p { color: #ffffff; }
+.cta-band-actions .btn.ghost { background: rgba(0, 0, 0, 0.42); }
+
+.hero-stat-card {
+    background: linear-gradient(135deg, var(--accent-btn), var(--accent-dark));
+}
+.hero-stat-card .label { color: #ffffff; }
+
+/* Mint numeral needed one more step of depth to clear 4.5:1. */
+.method-card:nth-child(3) .method-num { color: #0b3d20; }
+
+/* Rose numeral: #7f1d1d reached only 3.6:1 on the lighter stop. */
+.method-card:nth-child(4) .method-num { color: #5c1111; }
+
+/* --- WhatsApp affordances ---------------------------------------
+   The brand green #25d366 carries white at only 2.0:1 for the text
+   button and 2.2:1 for the floating icon — the latter also misses the
+   3:1 that WCAG 1.4.11 asks of meaningful non-text elements. Deepening
+   the green keeps it unmistakably WhatsApp while clearing 5:1. */
+.seo-landing .seo-cta-bar .btn.secondary { background: #0e7a3f; }
+.seo-landing .seo-cta-bar .btn.secondary:hover { background: #0a6132; }
+.chat-btn { background: #0e7a3f; box-shadow: 0 14px 32px rgba(14, 122, 63, 0.4); }
+.chat-btn:hover { background: #0a6132; }
+
+/* --- Legal / statement pages: numbered section badges ------------
+   Same problem as the method circles — white numerals on a light
+   tint (1.4:1 to 2.0:1). The badge keeps its colour family; the
+   numeral goes dark, and the blue variant starts from the softer
+   stop so the whole gradient supports dark text. */
+.legal-section h2 .num {
+    background: linear-gradient(135deg, var(--accent-soft), var(--accent-light));
+    color: var(--on-tint);
+    box-shadow: 0 6px 14px rgba(94, 123, 255, 0.25);
+}
+.legal-page--alt .legal-section h2 .num {
+    background: linear-gradient(135deg, var(--warm), var(--warm-soft));
+    color: var(--on-warm);
+    box-shadow: 0 6px 14px rgba(255, 154, 90, 0.25);
+}
+
+/* --- Touch target size (WCAG 2.5.8, AA in WCAG 2.2) --------------
+   The footer keyword links rendered 22px tall, just under the 24px
+   minimum. A little vertical padding fixes it without changing the
+   layout — the flex row already has a 14px row gap. */
+.footer-seo-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 2px 4px;
 }

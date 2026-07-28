@@ -34,6 +34,45 @@ External Integrations:
 - WhatsApp contact button
 - Google Sheets form submission endpoint
 
+FILE LAYOUT (as of July 2026)
+
+Pages:
+  index.html, accessibility.html, privacy.html, terms.html, 404.html,
+  therapy-children-petah-tikva.html, psychotherapist-children-petah-tikva.html,
+  cbt-children-petah-tikva.html
+
+Assets:
+  style.css              single stylesheet; @font-face block at the top
+  js/a11y-init.js        SYNCHRONOUS in <head>. Applies saved accessibility
+                         settings before first paint and adds the `js-reveal`
+                         class that gates the scroll animations.
+  js/site.js             nav, scroll reveal, reading progress, smooth scroll
+  js/contact.js          contact form + thank-you modal (index.html only)
+  js/a11y.js             accessibility widget UI
+  fonts/                 self-hosted Heebo + Frank Ruhl Libre (variable woff2)
+  image/                 photographs; .webp with .jpg/.png fallbacks
+
+IMPORTANT INVARIANTS
+
+1. There must be NO inline <script> and NO inline event handlers anywhere.
+   The Content-Security-Policy in _headers uses `script-src 'self'`, so any
+   inline script will simply not run. Put new code in js/ instead.
+
+2. `.reveal` elements are hidden ONLY while <html> carries `js-reveal`.
+   Never move the `opacity: 0` rule back out from under that class — without
+   the gate, a JS failure leaves the entire page blank.
+
+3. style.css, and every file in js/, are served with a one-year immutable
+   cache. They are requested with a `?v=YYYYMMDD` query string. After editing
+   either, bump that version in EVERY html file or returning visitors keep
+   the old copy.
+
+4. The colour corrections at the bottom of style.css keep the site at
+   WCAG 2.1 AA. Re-check contrast before changing any colour value.
+
+5. Files matching *.md and /.claude/ are returned as 404 by _redirects so
+   internal notes stay off the public site.
+
 SITE STRUCTURE
 
 Typical structure includes:

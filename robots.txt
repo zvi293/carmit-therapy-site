@@ -4,14 +4,18 @@
 
 User-agent: *
 Allow: /
-Disallow: /google16a87e731ef7633e.html
 Disallow: /*.bak$
 # Internal project notes — also returned as 404 by _redirects.
 Disallow: /*.md$
 Disallow: /.claude/
-# NOTE: do not add a blanket "Disallow: /*?*" here — the stylesheet is served
-# with a ?v= cache-busting query string, and blocking it would stop Google
-# from rendering the page.
+
+# The Search Console verification file is deliberately NOT disallowed.
+# Google has to be able to fetch it to confirm ownership, and blocking it
+# risks losing verification. It contains nothing sensitive — just a token.
+
+# Also deliberately absent: a blanket "Disallow" on query strings. The
+# stylesheet is served with a ?v= cache-busting parameter, so blocking
+# those would stop Google from rendering the pages at all.
 
 # ---------------------------------------------------------------
 # AI / answer engines — named explicitly so there is no ambiguity.

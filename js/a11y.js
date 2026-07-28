@@ -141,15 +141,31 @@
 
   /* ---------- build ---------- */
 
-  var toggle = document.createElement("button");
-  toggle.type = "button";
-  toggle.className = "a11y-toggle";
+  // Two triggers for one panel: a compact circle in the header for wide
+  // screens, and a row at the bottom of the hamburger menu for narrow ones.
+  // Only one is ever visible (CSS decides), but both stay in the DOM so the
+  // markup does not have to change on resize.
+  function makeTrigger(kind) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "a11y-toggle a11y-toggle--" + kind;
+    b.setAttribute("aria-label", "פתיחת תפריט נגישות");
+    b.setAttribute("aria-expanded", "false");
+    b.setAttribute("aria-controls", "a11yPanel");
+    b.innerHTML = ICON.a11y + (kind === "menu" ? "<span>הגדרות נגישות</span>" : "");
+    b.addEventListener("click", function () {
+      if (isOpen()) closePanel();
+      else openPanel(b);
+    });
+    return b;
+  }
+
+  var toggle = makeTrigger("header");
   toggle.id = "a11yToggle";
-  toggle.setAttribute("aria-label", "פתיחת תפריט נגישות");
-  toggle.setAttribute("aria-expanded", "false");
-  toggle.setAttribute("aria-controls", "a11yPanel");
   toggle.setAttribute("accesskey", "a");
-  toggle.innerHTML = ICON.a11y;
+
+  var menuToggle = makeTrigger("menu");
+  menuToggle.id = "a11yToggleMenu";
 
   var panel = document.createElement("div");
   panel.className = "a11y-panel";
@@ -263,7 +279,21 @@
   panel.appendChild(foot);
   panel.appendChild(live);
 
-  document.body.appendChild(toggle);
+  // Mount the header circle next to the "קביעת שיחה" call-to-action, and the
+  // menu row as the last item of the navigation list. If a page ever ships
+  // without a header, fall back to the body so the widget is never lost.
+  var headerCta = document.querySelector(".header-cta");
+  if (headerCta) headerCta.appendChild(toggle);
+  else document.body.appendChild(toggle);
+
+  var navList = document.querySelector(".main-nav ul");
+  if (navList) {
+    var li = document.createElement("li");
+    li.className = "a11y-nav-item";
+    li.appendChild(menuToggle);
+    navList.appendChild(li);
+  }
+
   document.body.appendChild(panel);
   renderFontValue();
 
@@ -331,13 +361,36 @@
 
   /* ---------- open / close ---------- */
 
-  var lastFocused = null;
+  var triggers = [toggle, menuToggle];
+  var openedBy = toggle;
 
-  function openPanel() {
-    lastFocused = document.activeElement;
+  function setTriggerState(open) {
+    for (var i = 0; i < triggers.length; i++) {
+      triggers[i].setAttribute("aria-expanded", open ? "true" : "false");
+      triggers[i].setAttribute("aria-label", open ? "סגירת תפריט נגישות" : "פתיחת תפריט נגישות");
+    }
+  }
+
+  // `source` is the trigger that was used, so focus can go back to it on
+  // close rather than always to the header one.
+  function openPanel(source) {
+    openedBy = source && source.focus ? source : visibleTrigger();
+
+    // Opened from inside the hamburger menu: close the menu first, otherwise
+    // the two panels overlap on a small screen.
+    var nav = document.querySelector(".main-nav");
+    var navToggle = document.querySelector(".nav-toggle");
+    if (nav && nav.classList.contains("open")) {
+      nav.classList.remove("open");
+      if (navToggle) {
+        navToggle.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    positionPanel();
     panel.hidden = false;
-    toggle.setAttribute("aria-expanded", "true");
-    toggle.setAttribute("aria-label", "סגירת תפריט נגישות");
+    setTriggerState(true);
     syncPressed();
     renderFontValue();
     closeBtn.focus();
@@ -347,19 +400,47 @@
 
   function closePanel(returnFocus) {
     panel.hidden = true;
-    toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", "פתיחת תפריט נגישות");
+    setTriggerState(false);
     document.removeEventListener("keydown", onPanelKey, true);
     document.removeEventListener("pointerdown", onOutsideClick, true);
-    if (returnFocus !== false) toggle.focus();
+    if (returnFocus !== false) {
+      var target = openedBy && openedBy.offsetParent !== null ? openedBy : visibleTrigger();
+      if (target) target.focus();
+    }
+  }
+
+  // Park the panel just below the header. Measured rather than hard-coded
+  // because the header shrinks once the page is scrolled, and because the
+  // enlarged-text setting changes its height too.
+  function positionPanel() {
+    var header = document.querySelector(".site-header");
+    var bottom = header ? header.getBoundingClientRect().bottom : 70;
+    root.style.setProperty("--a11y-anchor-top", Math.max(8, Math.round(bottom) + 8) + "px");
+  }
+  window.addEventListener("resize", function () {
+    if (isOpen()) positionPanel();
+  }, { passive: true });
+  window.addEventListener("scroll", function () {
+    if (isOpen()) positionPanel();
+  }, { passive: true });
+
+  // The hidden trigger has no layout box, so this picks whichever one the
+  // current breakpoint is actually showing.
+  function visibleTrigger() {
+    for (var i = 0; i < triggers.length; i++) {
+      if (triggers[i].offsetParent !== null) return triggers[i];
+    }
+    return toggle;
   }
 
   function isOpen() { return !panel.hidden; }
 
   function onOutsideClick(e) {
-    if (!panel.contains(e.target) && e.target !== toggle && !toggle.contains(e.target)) {
-      closePanel(false);
+    if (panel.contains(e.target)) return;
+    for (var i = 0; i < triggers.length; i++) {
+      if (e.target === triggers[i] || triggers[i].contains(e.target)) return;
     }
+    closePanel(false);
   }
 
   var FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -384,15 +465,12 @@
     }
   }
 
-  toggle.addEventListener("click", function () {
-    if (isOpen()) closePanel(); else openPanel();
-  });
   closeBtn.addEventListener("click", function () { closePanel(); });
 
   document.addEventListener("keydown", function (e) {
     if (e.altKey && e.shiftKey && (e.key === "A" || e.key === "a")) {
       e.preventDefault();
-      if (isOpen()) closePanel(); else openPanel();
+      if (isOpen()) closePanel(); else openPanel(visibleTrigger());
     }
   });
 

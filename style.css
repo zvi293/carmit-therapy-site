@@ -375,10 +375,12 @@ p { margin: 0 0 1rem; }
     gap: 10px;
     justify-self: end;
 }
-/* CTA button on the right of header-cta, hamburger on the far left
-   (in RTL: first flex item = right side, last = left edge) */
+/* In RTL the first flex item sits on the right, the last on the left edge:
+   CTA button, then the accessibility circle, then the hamburger.
+   Only one of the last two is ever visible at a given breakpoint. */
 .header-cta .btn { order: 1; }
-.header-cta .nav-toggle { order: 2; }
+.header-cta .a11y-toggle--header { order: 2; }
+.header-cta .nav-toggle { order: 3; }
 
 .nav-toggle {
     display: none;
@@ -2359,7 +2361,16 @@ p { margin: 0 0 1rem; }
 @media (max-width: 900px) {
     .main-nav {
         position: absolute;
+        /* `.main-nav` is a grid item of .header-inner, and the desktop rule
+           gives it `justify-self: center`. That alignment kept constraining
+           the dropdown to its old grid column, so `inset-inline: 0` produced
+           a ~200px box floating mid-header instead of a full-width panel.
+           Resetting the alignment and stating left/right explicitly fixes it. */
+        justify-self: stretch;
         inset-inline: 0;
+        left: 0;
+        right: 0;
+        width: auto;
         top: 100%;
         background: var(--white);
         border-bottom: 1px solid var(--line);
@@ -2786,35 +2797,83 @@ textarea:focus-visible,
    default design is completely untouched while the widget is off.
    ================================================================= */
 
-.a11y-toggle {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    left: auto;
-    width: 54px;
-    height: 54px;
+/* --- Trigger 1: compact circle in the header (wide screens) ------- */
+.a11y-toggle--header {
+    order: 2;                 /* RTL: sits to the left of the CTA button */
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
     border-radius: 50%;
-    border: 2px solid #ffffff;
-    background: #1b3a8f;
-    color: #ffffff;
-    display: flex;
+    border: 1px solid var(--line);
+    background: var(--white);
+    color: var(--text-main);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 9500;
-    box-shadow: 0 10px 28px rgba(27, 58, 143, 0.42);
-    transition: transform 0.25s var(--ease-out), background 0.25s var(--ease-out);
     padding: 0;
+    transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out),
+                color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
 }
-.a11y-toggle:hover,
-.a11y-toggle:focus-visible { transform: scale(1.08); background: #142c6e; }
-.a11y-toggle svg { width: 30px; height: 30px; display: block; }
+.a11y-toggle--header:hover,
+.a11y-toggle--header[aria-expanded="true"] {
+    background: var(--accent-btn);
+    border-color: var(--accent-btn);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+.a11y-toggle--header svg { width: 22px; height: 22px; display: block; }
+
+/* --- Trigger 2: row at the bottom of the hamburger menu ----------- */
+.a11y-nav-item { display: none; }
+.a11y-toggle--menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--accent-soft);
+    border-radius: var(--radius-sm);
+    background: var(--bg-soft);
+    color: var(--accent-dark);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: start;
+}
+.a11y-toggle--menu svg { width: 22px; height: 22px; flex-shrink: 0; }
+.a11y-toggle--menu:hover,
+.a11y-toggle--menu[aria-expanded="true"] {
+    background: var(--accent-btn);
+    border-color: var(--accent-btn);
+    color: #ffffff;
+}
+
+@media (max-width: 900px) {
+    .a11y-toggle--header { display: none; }
+    .a11y-nav-item {
+        display: block;
+        margin-top: 6px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+    }
+}
 
 .a11y-panel {
     position: fixed;
-    bottom: 90px;
-    right: 24px;
-    left: auto;
+    /* Anchored under the header, on the same side as the trigger.
+       --a11y-anchor-top is written by js/a11y.js from the live header
+       height, so the panel stays put whether the header is in its tall
+       resting state or its compact scrolled one. */
+    top: var(--a11y-anchor-top, 78px);
+    bottom: auto;
+    /* Physical left/right on purpose, not inset-inline-*: the page is RTL, so
+       the logical start edge is the RIGHT one — while the trigger that opens
+       this panel sits at the far LEFT of the header. The panel has to drop
+       under the button that opened it. */
+    left: 24px;
+    right: auto;
     width: min(330px, calc(100vw - 32px));
     max-height: min(76vh, 620px);
     overflow-y: auto;
@@ -2939,9 +2998,15 @@ textarea:focus-visible,
     text-align: center;
 }
 
-@media (max-width: 480px) {
-    .a11y-toggle { width: 50px; height: 50px; bottom: 20px; right: 16px; }
-    .a11y-panel { bottom: 80px; right: 12px; left: 12px; width: auto; max-height: 68vh; }
+/* On a phone the panel spans the width under the header — the trigger it
+   belongs to lives inside the menu, so there is no edge to align against. */
+@media (max-width: 900px) {
+    .a11y-panel {
+        left: 12px;
+        right: 12px;
+        width: auto;
+        max-height: 72vh;
+    }
 }
 
 /* ---------- Applied modes ---------- */
@@ -3058,10 +3123,11 @@ html[data-a11y-contrast="high"] .a11y-panel__close {
 html[data-a11y-contrast="high"] .a11y-btn[aria-pressed="true"],
 html[data-a11y-contrast="high"] .a11y-btn[aria-pressed="true"] :where(span, svg, path, circle, rect, line, polyline, polygon, g),
 html[data-a11y-contrast="high"] .a11y-toggle,
-html[data-a11y-contrast="high"] .a11y-toggle :where(svg, path) {
+html[data-a11y-contrast="high"] .a11y-toggle :where(span, svg, path) {
     background-color: #1b3a8f !important;
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
+    border-color: #ffffff !important;
 }
 html[data-a11y-contrast="high"] .a11y-btn[aria-pressed="true"] :where(svg, path, circle, rect, line, polyline, polygon, g),
 html[data-a11y-contrast="high"] .a11y-toggle :where(svg, path) { background-color: transparent !important; }

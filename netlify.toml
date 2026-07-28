@@ -1,7 +1,9 @@
 # Netlify configuration — Carmit Therapy Site
-
-[build]
-  publish = "."
+#
+# Deliberately minimal. Anything declared here OVERRIDES the settings in the
+# Netlify dashboard, so this file sets exactly one thing and nothing else.
+# In particular it does not declare `publish` or `skip_processing` — those
+# stay under the site's existing dashboard configuration.
 
 # ---------------------------------------------------------------
 # Pretty URLs OFF.
@@ -12,14 +14,11 @@
 # the sitemap both pointed at the .html form — so Google was being
 # sent to one address and told to index another.
 #
-# Turning this off keeps the deployed HTML byte-identical to the
-# source, so internal links, <link rel="canonical"> and sitemap.xml
-# all agree on the same URL. The extensionless form still resolves
-# (Netlify falls back to the .html file) and is redirected to the
-# canonical address by the rules in _redirects.
+# Turning this off keeps the deployed HTML identical to the source,
+# so internal links, <link rel="canonical"> and sitemap.xml all agree
+# on the same URL. The extensionless form still resolves (Netlify
+# falls back to the .html file) and is folded onto the canonical
+# address by the 301s in _redirects.
 # ---------------------------------------------------------------
-[build.processing]
-  skip_processing = false
-
 [build.processing.html]
   pretty_urls = false

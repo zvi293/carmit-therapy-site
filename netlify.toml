@@ -1,0 +1,25 @@
+# Netlify configuration — Carmit Therapy Site
+
+[build]
+  publish = "."
+
+# ---------------------------------------------------------------
+# Pretty URLs OFF.
+#
+# Netlify's HTML post-processing was rewriting every internal link
+# from "privacy.html" to "/privacy" at deploy time. The result was
+# that each page answered on two URLs, while the canonical tag and
+# the sitemap both pointed at the .html form — so Google was being
+# sent to one address and told to index another.
+#
+# Turning this off keeps the deployed HTML byte-identical to the
+# source, so internal links, <link rel="canonical"> and sitemap.xml
+# all agree on the same URL. The extensionless form still resolves
+# (Netlify falls back to the .html file) and is redirected to the
+# canonical address by the rules in _redirects.
+# ---------------------------------------------------------------
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = false

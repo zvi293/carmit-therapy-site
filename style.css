@@ -2294,10 +2294,25 @@ p { margin: 0 0 1rem; }
 .footer-bottom a { color: #cbd5e1; }
 .footer-bottom a:hover { color: var(--warm); }
 
-.footer-credit a {
-    color: var(--warm);
-    font-weight: 600;
+.footer-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
+/* הלוגו בכיתוב כחול כהה — צ׳יפ בהיר שומר עליו קריא מעל הרקע הכהה */
+.footer-credit-link {
+    display: inline-flex;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.15s, box-shadow 0.2s;
+}
+.footer-credit-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(99, 76, 168, 0.35);
+}
+.footer-credit-link img { display: block; height: 30px; width: auto; }
 
 .footer-seo-links {
     display: flex;
